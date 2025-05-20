@@ -7,10 +7,10 @@
 class Obiect {
     protected:
     std::string nume;
-    float greutate;
+    double greutate;
 
     public:
-    Obiect(const std::string& nume, float greutate);
+    Obiect(const std::string& nume, double greutate);
     virtual ~Obiect();
 
 };

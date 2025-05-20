@@ -9,7 +9,7 @@ class Loot : public Obiect {
     int raritate;
 
     public:
-    Loot(const std::string& nume, float greutate, int raritate);
+    Loot(const std::string& nume, double greutate, int raritate);
     ~Loot() override;
 
 };

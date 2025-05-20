@@ -7,10 +7,10 @@
 class Rucsac : public Obiect {
     protected:
     int nivel;
-    float capacitate;
+    double capacitate;
 
     public:
-    Rucsac(const std::string& nume = "Rucsac simplu", float greutate = 1.5, int nivel = 1, float capacitate = 10.0);
+    explicit Rucsac(const std::string& nume = "Rucsac simplu", double greutate = 1.5, int nivel = 1, double capacitate = 10.0);
     ~Rucsac() override;
 };
 

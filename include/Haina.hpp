@@ -13,7 +13,7 @@ protected:
     int bonusBuzunar;
 
 public:
-    Haina(const std::string& nume = "", float greutate = 0.0, int nivel = 1, int bonusStamina = 0, int bonusViteza = 0, int bonusScadereStamina = 0, int bonusBuzunar = 0);
+    explicit Haina(const std::string& nume = "", double greutate = 0.0, int nivel = 1, int bonusStamina = 0, int bonusViteza = 0, int bonusScadereStamina = 0, int bonusBuzunar = 0);
     ~Haina() override;
 };
 
