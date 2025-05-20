@@ -20,7 +20,7 @@ class Jucator {
    Pantofi pantofi;
 
    public:
-   Jucator(int energie = 100, int bani = 0, int viteza = 1);
+   explicit Jucator(int energie = 100, int bani = 0, int viteza = 1);
    ~Jucator();
 };
 
