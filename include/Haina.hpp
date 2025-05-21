@@ -2,6 +2,7 @@
 #define HAINA_HPP
 
 #include "Obiect.hpp"
+#include "Rucsac.hpp"
 
 
 class Haina : public Obiect {
@@ -16,7 +17,7 @@ public:
     explicit Haina(const std::string& nume = "", double greutate = 0.0, int nivel = 1, int bonusStamina = 0, int bonusViteza = 0, int bonusScadereStamina = 0, double bonusBuzunar = 0.0);
     ~Haina() override;
 
-    virtual void upgrade() = 0;
+    virtual bool upgrade(int& bani, Rucsac& rucsac) = 0;
 };
 
 #endif

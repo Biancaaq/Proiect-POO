@@ -8,7 +8,7 @@ public:
     Pantofi();
     ~Pantofi() override;
 
-    void upgrade() override;
+    bool upgrade(int& bani, Rucsac& rucsac) override;
 };
 
 #endif

@@ -40,6 +40,7 @@ int main() {
     j.faUpgrade("pantofi");
     j.faUpgrade("palarie");
     j.faUpgrade("pantofi");
+    j.faUpgrade("bluza");
 
     return 0;
 }

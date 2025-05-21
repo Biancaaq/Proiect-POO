@@ -9,18 +9,18 @@ Jucator::~Jucator() = default;
 
 void Jucator::faUpgrade(const string& numeEchipament) {
     if (numeEchipament == "palarie") {
-        palarie.upgrade();
+        palarie.upgrade(bani, rucsac);
     }
 
     else if (numeEchipament == "bluza") {
-        bluza.upgrade();
+        bluza.upgrade(bani, rucsac);
     }
 
     else if (numeEchipament == "pantaloni") {
-        pantaloni.upgrade();
+        pantaloni.upgrade(bani, rucsac);
     }
 
     else if (numeEchipament == "pantofi") {
-        pantofi.upgrade();
+        pantofi.upgrade(bani, rucsac);
     }
 }
