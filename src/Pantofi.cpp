@@ -51,7 +51,7 @@ bool Pantofi::upgrade(int& bani, Rucsac& rucsac) {
     }
 
     nivel++;
-    bonusViteza += 2;
+    bonusViteza = 2;
     cout << "Pantofii au fost upgradati cu succes! Nivel curent: " << nivel << endl;
 
     return true;

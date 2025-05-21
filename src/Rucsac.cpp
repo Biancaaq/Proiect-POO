@@ -30,3 +30,11 @@ bool Rucsac::consumaLoot(const string& tip, int cantitate) {
     }
     return cnt == cantitate;
 }
+
+double Rucsac::getCapacitate() const {
+    return capacitate;
+}
+
+void Rucsac::setCapacitate(double capacitateNoua) {
+    capacitate = capacitateNoua;
+}

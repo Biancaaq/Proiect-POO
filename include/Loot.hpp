@@ -7,13 +7,13 @@
 class Loot : public Obiect {
     protected:
     int raritate;
-    std::string tip;
+    int pret;
 
     public:
-    Loot(const std::string& nume, double greutate, int raritate, const std::string& tip);
+    Loot(const std::string& nume, double greutate, int raritate, int pret);
     ~Loot() override;
 
-    virtual std::string getTip() const = 0;
+    virtual std::string getNume() const = 0;
 
 };
 

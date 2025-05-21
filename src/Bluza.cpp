@@ -54,7 +54,7 @@ bool Bluza::upgrade(int& bani, Rucsac& rucsac) {
 
 
     nivel++;
-    bonusStamina += 20;
+    bonusStamina = 20;
     cout << "Bluza upgradata cu succes! Nivel curent: " << nivel << endl;
 
     return true;

@@ -22,6 +22,9 @@ class Rucsac : public Obiect {
 
     int numaraLoot(const std::string& tip) const;
     bool consumaLoot(const std::string& tip, int cantitate);
+
+    double getCapacitate() const;
+    void setCapacitate(double capacitateNoua);
 };
 
 #endif

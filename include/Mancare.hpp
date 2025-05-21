@@ -8,11 +8,12 @@ class Mancare : public Loot {
     int energieRecuperata;
     bool procesata;
 
+
     public:
-    Mancare(const std::string& nume, double greutate, int raritate, const std::string& tip, int energie, bool procesata = false);
+    Mancare(const std::string& nume, double greutate, int raritate, int pret, int energie, bool procesata = false);
     ~Mancare() override;
 
-    std::string getTip() const override;
+    std::string getNume() const override;
 };
 
 #endif

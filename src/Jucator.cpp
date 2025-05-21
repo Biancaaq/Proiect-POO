@@ -4,23 +4,42 @@
 using namespace std;
 
 
-Jucator::Jucator(int energie, int bani, int viteza) : energie(energie), bani(bani), viteza(viteza), rucsac(), palarie(), bluza(), pantaloni(), pantofi() {}
+Jucator::Jucator(int energie, int bani, int viteza, int scadere) : energie(energie), bani(bani), viteza(viteza), rataScadereEnergie(energie), rucsac(), palarie(), bluza(), pantaloni(), pantofi() {}
 Jucator::~Jucator() = default;
 
 void Jucator::faUpgrade(const string& numeEchipament) {
+    bool upgradat = false;
     if (numeEchipament == "palarie") {
-        palarie.upgrade(bani, rucsac);
+        upgradat = palarie.upgrade(bani, rucsac);
     }
 
     else if (numeEchipament == "bluza") {
-        bluza.upgrade(bani, rucsac);
+        upgradat = bluza.upgrade(bani, rucsac);
     }
 
     else if (numeEchipament == "pantaloni") {
-        pantaloni.upgrade(bani, rucsac);
+        upgradat = pantaloni.upgrade(bani, rucsac);
     }
 
     else if (numeEchipament == "pantofi") {
-        pantofi.upgrade(bani, rucsac);
+        upgradat = pantofi.upgrade(bani, rucsac);
     }
+
+    if (upgradat) {
+        adaugaNoroc(0.00125f);
+        cout << "Noroc actual: " << noroc * 100 << "%" << endl;
+    }
+}
+
+void::Jucator::updateStatusuri() {
+    energie = 100 + bluza.getBonusStamina();
+    viteza = 1 + pantofi.getBonusViteza();
+    rataScadereEnergie = 0 + palarie.getBonusScadereStamina();
+
+    double bonusCapacitate = rucsac.getCapacitate() + pantaloni.getBonusBuzunar();
+    rucsac.setCapacitate(bonusCapacitate);
+}
+
+void Jucator::adaugaNoroc(float bonus) {
+    noroc += bonus;
 }

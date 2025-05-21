@@ -52,7 +52,7 @@ bool Pantaloni::upgrade(int& bani, Rucsac& rucsac) {
         rucsac.consumaLoot(tip, cantitate);
 
     nivel++;
-    bonusBuzunar += 5.0;
+    bonusBuzunar = 2.5;
     cout << "Pantalonii au fost upgradati cu succes! Nivel curent: " << nivel << endl;
 
     return true;

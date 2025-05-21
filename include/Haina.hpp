@@ -18,6 +18,11 @@ public:
     ~Haina() override;
 
     virtual bool upgrade(int& bani, Rucsac& rucsac) = 0;
+
+    int getBonusStamina() const;
+    int getBonusViteza() const;
+    int getBonusScadereStamina() const;
+    int getBonusBuzunar() const;
 };
 
 #endif
