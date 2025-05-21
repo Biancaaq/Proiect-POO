@@ -4,7 +4,7 @@
 using namespace std;
 
 
-Jucator::Jucator(int energie, int bani, int viteza, int scadere) : energie(energie), bani(bani), viteza(viteza), rataScadereEnergie(energie), rucsac(), palarie(), bluza(), pantaloni(), pantofi() {}
+Jucator::Jucator(int energie, int bani, int viteza, int scadere) : energie(energie), bani(bani), viteza(viteza), rataScadereEnergie(scadere), rucsac(), palarie(), bluza(), pantaloni(), pantofi() {}
 Jucator::~Jucator() = default;
 
 void Jucator::faUpgrade(const string& numeEchipament) {
@@ -42,4 +42,8 @@ void::Jucator::updateStatusuri() {
 
 void Jucator::adaugaNoroc(float bonus) {
     noroc += bonus;
+}
+
+int Jucator::getViteza() const {
+    return viteza;
 }

@@ -28,8 +28,9 @@ class Jucator {
 
    void faUpgrade(const std::string& numeEchipament);
    void updateStatusuri();
-
    void adaugaNoroc(float bonus);
+
+   int getViteza() const;
 };
 
 #endif

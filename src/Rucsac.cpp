@@ -9,7 +9,7 @@ Rucsac::~Rucsac() = default;
 int Rucsac::numaraLoot(const string& tip) const {
     int total = 0;
     for (const auto& l : loot) {
-        if (l->getTip() == tip) {
+        if (l->getNume() == tip) {
             total++;
         }
     }
@@ -19,7 +19,7 @@ int Rucsac::numaraLoot(const string& tip) const {
 bool Rucsac::consumaLoot(const string& tip, int cantitate) {
     int cnt = 0;
     for (auto i = loot.begin(); i != loot.end() && cnt < cantitate;) {
-        if ((*i)->getTip() == tip) {
+        if ((*i)->getNume() == tip) {
             i = loot.erase(i);
             cnt++;
         }

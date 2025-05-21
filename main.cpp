@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Jucator.hpp"
+#include "Mancare.hpp"
 
 using namespace std;
 
@@ -41,6 +42,7 @@ int main() {
     j.faUpgrade("palarie");
     j.faUpgrade("pantofi");
     j.faUpgrade("bluza");
+
 
     return 0;
 }
