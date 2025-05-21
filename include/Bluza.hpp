@@ -7,6 +7,8 @@ class Bluza : public Haina {
 public:
     Bluza();
     ~Bluza() override;
+
+    void upgrade() override;
 };
 
 #endif

@@ -22,6 +22,8 @@ class Jucator {
    public:
    explicit Jucator(int energie = 100, int bani = 0, int viteza = 1);
    ~Jucator();
+
+   void faUpgrade(const std::string& numeEchipament);
 };
 
 #endif

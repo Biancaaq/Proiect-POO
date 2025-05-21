@@ -7,6 +7,8 @@ class Pantaloni : public Haina {
 public:
     Pantaloni();
     ~Pantaloni() override;
+
+    void upgrade() override;
 };
 
 #endif

@@ -10,11 +10,13 @@ protected:
     int bonusStamina;
     int bonusViteza;
     int bonusScadereStamina;
-    int bonusBuzunar;
+    double bonusBuzunar;
 
 public:
-    explicit Haina(const std::string& nume = "", double greutate = 0.0, int nivel = 1, int bonusStamina = 0, int bonusViteza = 0, int bonusScadereStamina = 0, int bonusBuzunar = 0);
+    explicit Haina(const std::string& nume = "", double greutate = 0.0, int nivel = 1, int bonusStamina = 0, int bonusViteza = 0, int bonusScadereStamina = 0, double bonusBuzunar = 0.0);
     ~Haina() override;
+
+    virtual void upgrade() = 0;
 };
 
 #endif

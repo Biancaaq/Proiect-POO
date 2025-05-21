@@ -8,6 +8,8 @@ class Palarie : public Haina {
     public:
     Palarie();
     ~Palarie() override;
+
+    void upgrade() override;
 };
 
 #endif
