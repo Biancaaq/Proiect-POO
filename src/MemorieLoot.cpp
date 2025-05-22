@@ -2,8 +2,9 @@
 #include "Mancare.hpp"
 #include "Material.hpp"
 #include <fstream>
-#include <bits/random.h>
+#include <random>
 #include <nlohmann/json.hpp>
+#include <cmath>
 
 using json = nlohmann::json;
 using namespace std;
@@ -67,4 +68,6 @@ std::shared_ptr<Loot> MemorieLoot::genereazaLootAleator(const Jucator &jucator) 
             return LootTotal[i];
         }
     }
+
+    return nullptr;
 }

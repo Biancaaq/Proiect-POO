@@ -10,6 +10,6 @@ double Obiect::getGreutate() const {
     return greutate;
 }
 
-string Obiect::getNume() const {
+const string& Obiect::getNume() const {
     return nume;
 }

@@ -14,7 +14,7 @@ class Obiect {
     virtual ~Obiect();
 
     double getGreutate() const;
-    std::string getNume() const;
+    const std::string& getNume() const;
 
 };
 

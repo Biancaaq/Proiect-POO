@@ -99,7 +99,7 @@ void EvenimentDrum::interactLoot(Jucator& jucator, std::shared_ptr<Loot> loot) {
             }
             cout << "Nu ai putut adauga lootul. L-ai lasat in urma." << endl;
         }
-        
+
         else {
             cout << "Ai lasat lootul." << endl;
         }

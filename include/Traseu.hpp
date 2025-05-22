@@ -2,6 +2,7 @@
 #define TRASEU_HPP
 
 #include <vector>
+#include <cstddef>
 
 
 enum class TipLocatie {
