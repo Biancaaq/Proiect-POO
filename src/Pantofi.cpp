@@ -52,7 +52,12 @@ bool Pantofi::upgrade(int& bani, Rucsac& rucsac) {
 
     nivel++;
     bonusViteza = 2;
+    greutate += 0.1;
     cout << "Pantofii au fost upgradati cu succes! Nivel curent: " << nivel << endl;
 
     return true;
+}
+
+double Pantofi::getGreutate() const {
+    return greutate;
 }

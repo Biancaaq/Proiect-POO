@@ -14,6 +14,7 @@ class Mancare : public Loot {
     ~Mancare() override;
 
     std::string getNume() const override;
+    double getGreutate() const override;
 };
 
 #endif

@@ -9,6 +9,7 @@ public:
     ~Pantaloni() override;
 
     bool upgrade(int& bani, Rucsac& rucsac) override;
+    double getGreutate() const override;
 };
 
 #endif

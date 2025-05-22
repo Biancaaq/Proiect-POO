@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Jucator.hpp"
 #include "Mancare.hpp"
+#include "Traseu.hpp"
 
 using namespace std;
 
@@ -43,6 +44,8 @@ int main() {
     j.faUpgrade("pantofi");
     j.faUpgrade("bluza");
 
+    Traseu t;
+    t.pas(j);
 
     return 0;
 }

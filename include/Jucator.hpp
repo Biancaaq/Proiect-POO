@@ -12,7 +12,7 @@ class Jucator {
    int energie;
    int bani;
    int viteza;
-   int rataScadereEnergie;
+   int rataReducereScadereEnergie;
    float noroc = 0.0f;
 
    Rucsac rucsac;
@@ -23,7 +23,7 @@ class Jucator {
    // vector de pointeri catre Ob
 
    public:
-   explicit Jucator(int energie = 100, int bani = 0, int viteza = 1, int scadere = 0);
+   explicit Jucator(int energie = 100, int bani = 0, int viteza = 1, int reducere = 0);
    ~Jucator();
 
    void faUpgrade(const std::string& numeEchipament);
@@ -31,6 +31,7 @@ class Jucator {
    void adaugaNoroc(float bonus);
 
    int getViteza() const;
+   void consumaEnergie();
 };
 
 #endif

@@ -10,6 +10,7 @@ class Material : public Loot {
     ~Material() override;
 
     std::string getNume() const override;
+    double getGreutate() const override;
 };
 
 #endif

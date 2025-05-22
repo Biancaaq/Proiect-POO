@@ -16,7 +16,7 @@ class Jucator;
 class Traseu {
     std::vector<int> distanteSegmente;
     std::vector<TipLocatie> traseu;
-    int segmentCurent;
+    size_t segmentCurent;
     int distantaRamasa;
 
     public:

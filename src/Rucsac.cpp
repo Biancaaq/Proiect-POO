@@ -38,3 +38,20 @@ double Rucsac::getCapacitate() const {
 void Rucsac::setCapacitate(double capacitateNoua) {
     capacitate = capacitateNoua;
 }
+
+double Rucsac::getGreutate() const {
+    return greutate;
+}
+
+
+double Rucsac::getGreutateTotala() const {
+    double total = 0.0;
+
+    for (const auto& l : loot) {
+        if (l) {
+            total += l->getGreutate();
+        }
+    }
+
+    return total;
+}

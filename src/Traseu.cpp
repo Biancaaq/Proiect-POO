@@ -42,6 +42,7 @@ void Traseu::genereazaTraseu() {
 void Traseu::pas(Jucator& jucator) {
     int viteza = jucator.getViteza();
     distantaRamasa -= viteza;
+    jucator.consumaEnergie();
 
     if (distantaRamasa <= 0) {
         segmentCurent++;

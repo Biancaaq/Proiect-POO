@@ -51,8 +51,13 @@ bool Palarie::upgrade(int& bani, Rucsac& rucsac) {
         rucsac.consumaLoot(tip, cantitate);
 
     nivel++;
-    bonusScadereStamina = 1;
+    bonusReducereScadereStamina = 1;
+    greutate += 0.1;
     cout << "Palaria a fost upgradata cu succes! Nivel curent: " << nivel << endl;
 
     return true;
+}
+
+double Palarie::getGreutate() const {
+    return greutate;
 }

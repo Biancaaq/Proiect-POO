@@ -55,7 +55,12 @@ bool Bluza::upgrade(int& bani, Rucsac& rucsac) {
 
     nivel++;
     bonusStamina = 20;
+    greutate += 0.2;
     cout << "Bluza upgradata cu succes! Nivel curent: " << nivel << endl;
 
     return true;
+}
+
+double Bluza::getGreutate() const {
+    return greutate;
 }

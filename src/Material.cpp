@@ -9,3 +9,7 @@ Material::~Material() = default;
 string Material::getNume() const {
     return nume;
 }
+
+double Material::getGreutate() const {
+    return greutate;
+}

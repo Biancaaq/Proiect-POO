@@ -53,7 +53,12 @@ bool Pantaloni::upgrade(int& bani, Rucsac& rucsac) {
 
     nivel++;
     bonusBuzunar = 2.5;
+    greutate += 0.2;
     cout << "Pantalonii au fost upgradati cu succes! Nivel curent: " << nivel << endl;
 
     return true;
+}
+
+double Pantaloni::getGreutate() const {
+    return greutate;
 }

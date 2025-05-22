@@ -9,3 +9,7 @@ Mancare::~Mancare() = default;
 string Mancare::getNume() const {
     return nume;
 }
+
+double Mancare::getGreutate() const {
+    return greutate;
+}
