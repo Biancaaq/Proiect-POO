@@ -5,7 +5,7 @@ using namespace std;
 
 
 void EvenimentRau::trecereRau(Jucator& jucator, int numarRau) {
-    int cost;
+    int cost = 0;
     switch (numarRau) {
         case 1: {
             cost = 70;
