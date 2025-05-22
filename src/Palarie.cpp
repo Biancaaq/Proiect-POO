@@ -57,7 +57,3 @@ bool Palarie::upgrade(int& bani, Rucsac& rucsac) {
 
     return true;
 }
-
-double Palarie::getGreutate() const {
-    return greutate;
-}

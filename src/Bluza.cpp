@@ -60,7 +60,3 @@ bool Bluza::upgrade(int& bani, Rucsac& rucsac) {
 
     return true;
 }
-
-double Bluza::getGreutate() const {
-    return greutate;
-}

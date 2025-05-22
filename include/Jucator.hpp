@@ -4,6 +4,7 @@
 #include "Rucsac.hpp"
 #include "Palarie.hpp"
 #include "Bluza.hpp"
+#include "Mancare.hpp"
 #include "Pantaloni.hpp"
 #include "Pantofi.hpp"
 
@@ -32,6 +33,11 @@ class Jucator {
 
    int getViteza() const;
    void consumaEnergie();
+   void scadeEnergie(int valoare);
+   void cresteEnergie(int valoare);
+   void consumaMancare(const Mancare& mancare);
+   float getNoroc() const;
+   Rucsac& getRucsac();
 };
 
 #endif

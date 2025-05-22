@@ -57,7 +57,3 @@ bool Pantofi::upgrade(int& bani, Rucsac& rucsac) {
 
     return true;
 }
-
-double Pantofi::getGreutate() const {
-    return greutate;
-}

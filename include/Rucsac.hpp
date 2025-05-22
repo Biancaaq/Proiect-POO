@@ -6,7 +6,6 @@
 #include "Obiect.hpp"
 #include "Loot.hpp"
 #include <vector>
-#include "Material.hpp"
 
 
 class Rucsac : public Obiect {
@@ -22,11 +21,13 @@ class Rucsac : public Obiect {
 
     int numaraLoot(const std::string& tip) const;
     bool consumaLoot(const std::string& tip, int cantitate);
+    void adaugaLoot(std::shared_ptr<Loot>& obiect);
+    bool incapeInRucsac(const std::shared_ptr<Loot>& obiect) const;
+    void afiseazaContinut(bool index = false) const;
+    bool aruncaLoot(int index);
 
-    double getGreutate() const override;
     double getCapacitate() const;
     void setCapacitate(double capacitateNoua);
-
     double getGreutateTotala() const;
 };
 

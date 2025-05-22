@@ -63,5 +63,31 @@ void Jucator::consumaEnergie() {
 
     if (energie < 0 ) {
         energie = 0;
+        //TODO: joc pierdut
     }
+}
+
+void Jucator::scadeEnergie(int valoare) {
+    energie -= valoare;
+    if (energie < 0) {
+        energie = 0;
+        //TODO: joc pierdut
+    }
+}
+
+void Jucator::cresteEnergie(int valoare) {
+    energie += valoare;
+}
+
+void Jucator::consumaMancare(const Mancare& mancare) {
+    cresteEnergie(mancare.getEnergieRecuperata());
+    cout << "Ai consumat " << mancare.getNume() << " si ai regenerat " << mancare.getEnergieRecuperata() << " energie." << endl;
+}
+
+float Jucator::getNoroc() const {
+    return noroc;
+}
+
+Rucsac& Jucator::getRucsac() {
+    return rucsac;
 }

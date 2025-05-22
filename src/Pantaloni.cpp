@@ -58,7 +58,3 @@ bool Pantaloni::upgrade(int& bani, Rucsac& rucsac) {
 
     return true;
 }
-
-double Pantaloni::getGreutate() const {
-    return greutate;
-}

@@ -1,4 +1,5 @@
 #include "Rucsac.hpp"
+#include <iostream>
 
 using namespace std;
 
@@ -31,6 +32,36 @@ bool Rucsac::consumaLoot(const string& tip, int cantitate) {
     return cnt == cantitate;
 }
 
+void Rucsac::adaugaLoot(std::shared_ptr<Loot>& obiect) {
+    loot.push_back(obiect);
+}
+
+bool Rucsac::incapeInRucsac(const std::shared_ptr<Loot>& obiect) const {
+    return getGreutateTotala() + obiect->getGreutate() <= capacitate;
+}
+
+void Rucsac::afiseazaContinut(bool index) const {
+    if (loot.empty()) {
+        cout << "Rucsacul este gol." << endl;
+        return; //TODO: exceptie rucsac gol
+    }
+
+    for (size_t i = 0; i < loot.size(); ++i) {
+        if (index) cout << i + 1 << ". ";
+        cout << loot[i]->getNume() << " (greutate: " << loot[i]->getGreutate() << ")" << endl;
+    }
+}
+
+bool Rucsac::aruncaLoot(int index) {
+    if (index < 1 || index > (int)loot.size()) {
+        cout << "Index invalid." << endl; //TODO: exceptie
+        return false;
+    }
+
+    loot.erase(loot.begin() + (index - 1));
+    return true;
+}
+
 double Rucsac::getCapacitate() const {
     return capacitate;
 }
@@ -38,11 +69,6 @@ double Rucsac::getCapacitate() const {
 void Rucsac::setCapacitate(double capacitateNoua) {
     capacitate = capacitateNoua;
 }
-
-double Rucsac::getGreutate() const {
-    return greutate;
-}
-
 
 double Rucsac::getGreutateTotala() const {
     double total = 0.0;

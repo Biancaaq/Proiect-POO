@@ -13,7 +13,8 @@ class Obiect {
     Obiect(const std::string& nume, double greutate);
     virtual ~Obiect();
 
-    virtual double getGreutate() const = 0;
+    double getGreutate() const;
+    std::string getNume() const;
 
 };
 
