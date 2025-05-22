@@ -9,7 +9,7 @@ using namespace std;
 
 
 void EvenimentDrum::interactLoot(Jucator& jucator, std::shared_ptr<Loot> loot) {
-    cout << "Ai gasit: " << loot->getNume() << " (greutate: " << loot->getGreutate() << " kg)" << endl;
+    cout << "Ai gasit: " << loot->getNume() << " (greutate: " << loot->getGreutate() << " kg)" << ", raritate: " << loot->getRaritate() << endl;
     cout << "Vrei sa il iei?" << endl;
     cout << "1. Da" << endl;
     cout << "2. Nu" << endl;

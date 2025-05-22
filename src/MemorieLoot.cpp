@@ -1,6 +1,8 @@
 #include "MemorieLoot.hpp"
 #include "Mancare.hpp"
 #include "Material.hpp"
+#include "Jucator.hpp"
+#include "Loot.hpp"
 #include <fstream>
 #include <random>
 #include <nlohmann/json.hpp>
