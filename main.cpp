@@ -50,8 +50,6 @@ int main() {
     Traseu t;
     t.pas(j);
 
-    EvenimentDrum e;
-    MemorieLoot m;
 
     return 0;
 }

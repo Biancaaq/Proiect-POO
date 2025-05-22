@@ -31,6 +31,7 @@ class Jucator {
    void updateStatusuri();
    void adaugaNoroc(float bonus);
    void adaugaBani(int suma);
+   void scadeBani(int suma);
 
    int getViteza() const;
    void consumaEnergie();
@@ -40,6 +41,7 @@ class Jucator {
    float getNoroc() const;
    Rucsac& getRucsac();
    int getEnergie() const;
+   int getBani() const;
 };
 
 #endif

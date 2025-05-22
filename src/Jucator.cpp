@@ -96,6 +96,17 @@ int Jucator::getEnergie() const {
     return energie;
 }
 
+int Jucator::getBani() const {
+    return bani;
+}
+
 void Jucator::adaugaBani(int suma) {
     bani += suma;
+}
+
+void Jucator::scadeBani(int suma) {
+    bani -= suma;
+    if (bani < 0) {
+        bani = 0;
+    }
 }
