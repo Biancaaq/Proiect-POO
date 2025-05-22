@@ -6,11 +6,9 @@
 
 class Mancare : public Loot {
     int energieRecuperata;
-    bool procesata;
-
 
     public:
-    Mancare(const std::string& nume, double greutate, int raritate, int pret, int energie, bool procesata = false);
+    Mancare(const std::string& nume, double greutate, int raritate, int pret, int energie);
     ~Mancare() override;
 
     int getEnergieRecuperata() const;

@@ -22,10 +22,9 @@ void MemorieLoot::incarcaDinJSON(const std::string &fisierMancare, const std::st
         double greutate = m["greutate"];
         int raritate = m["raritate"];
         int energie = m["energie"];
-        bool procesata = m.value("procesata", false);
         int pret = m["pret"];
 
-        mancare.push_back(make_shared<Mancare>(nume, greutate, raritate, energie, procesata, pret));
+        mancare.push_back(make_shared<Mancare>(nume, greutate, raritate, pret, energie));
     }
 
     ifstream inMateriale(fisierMateriale);

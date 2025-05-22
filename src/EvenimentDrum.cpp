@@ -134,7 +134,7 @@ void EvenimentDrum::executa(Jucator& jucator, const MemorieLoot& memorie) {
             uniform_int_distribution<int> sansaSucces(1, 100);
             if (sansaSucces(gen) <= 50) {
                 cout << "Vanatoarea a avut succes! Ai primit x1 carne de iepure." << endl;
-                shared_ptr<Loot> carne = make_shared<Mancare>("carne de iepure", 0.4, 3, 12, 25, false);
+                shared_ptr<Loot> carne = make_shared<Mancare>("carne de iepure", 0.4, 3, 12, 25);
                 interactLoot(jucator, carne);
             }
 

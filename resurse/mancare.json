@@ -3,7 +3,7 @@
   { "nume": "alune de padure", "greutate": 0.1, "raritate": 2, "energie": 8, "pret": 6 },
   { "nume": "fructe de padure", "greutate": 0.15, "raritate": 1, "energie": 7, "pret": 5 },
   { "nume": "carne de iepure", "greutate": 0.4, "raritate": 3, "energie": 25, "pret": 12 },
-  { "nume": "suc de mere", "greutate": 0.3, "raritate": 1, "energie": 20, "procesata": true, "pret": 10 },
-  { "nume": "carne gatita", "greutate": 0.45, "raritate": 4, "energie": 40, "procesata": true, "pret": 22 },
-  { "nume": "baton energetic", "greutate": 0.6, "raritate": 3, "energie": 40, "procesata": true, "pret": 18 }
+  { "nume": "suc de mere", "greutate": 0.3, "raritate": 1, "energie": 20 },
+  { "nume": "carne gatita", "greutate": 0.45, "raritate": 4, "energie": 40 },
+  { "nume": "baton energetic", "greutate": 0.6, "raritate": 3, "energie": 40 }
 ]
