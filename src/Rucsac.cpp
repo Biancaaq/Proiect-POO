@@ -81,3 +81,7 @@ double Rucsac::getGreutateTotala() const {
 
     return total;
 }
+
+const vector<shared_ptr<Loot>>& Rucsac::getLoot() const {
+    return loot;
+}

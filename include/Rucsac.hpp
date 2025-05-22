@@ -29,6 +29,7 @@ class Rucsac : public Obiect {
     double getCapacitate() const;
     void setCapacitate(double capacitateNoua);
     double getGreutateTotala() const;
+    const std::vector<std::shared_ptr<Loot>>& getLoot() const;
 };
 
 #endif

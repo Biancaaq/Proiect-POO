@@ -1,0 +1,25 @@
+[
+  {
+    "rezultat": "suc de mere",
+    "tip": "mancare",
+    "ingrediente": [
+      { "nume": "mar", "cantitate": 2 }
+    ]
+  },
+  {
+    "rezultat": "carne gatita",
+    "tip": "mancare",
+    "ingrediente": [
+      { "nume": "carne de iepure", "cantitate": 1 }
+    ]
+  },
+  {
+    "rezultat": "baton energetic",
+    "tip": "mancare",
+    "ingrediente": [
+      { "nume": "alune de padure", "cantitate": 1 },
+      { "nume": "fructe de padure", "cantitate": 1 },
+      { "nume": "mar", "cantitate": 1 }
+    ]
+  }
+]

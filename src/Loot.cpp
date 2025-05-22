@@ -10,3 +10,7 @@ Loot::~Loot() = default;
 int Loot::getRaritate() const {
     return raritate;
 }
+
+int Loot::getPret() const {
+    return pret;
+}

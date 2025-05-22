@@ -91,3 +91,11 @@ float Jucator::getNoroc() const {
 Rucsac& Jucator::getRucsac() {
     return rucsac;
 }
+
+int Jucator::getEnergie() const {
+    return energie;
+}
+
+void Jucator::adaugaBani(int suma) {
+    bani += suma;
+}

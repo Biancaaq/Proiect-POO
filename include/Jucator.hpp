@@ -30,6 +30,7 @@ class Jucator {
    void faUpgrade(const std::string& numeEchipament);
    void updateStatusuri();
    void adaugaNoroc(float bonus);
+   void adaugaBani(int suma);
 
    int getViteza() const;
    void consumaEnergie();
@@ -38,6 +39,7 @@ class Jucator {
    void consumaMancare(const Mancare& mancare);
    float getNoroc() const;
    Rucsac& getRucsac();
+   int getEnergie() const;
 };
 
 #endif

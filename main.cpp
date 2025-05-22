@@ -1,4 +1,6 @@
 #include <iostream>
+
+#include "EvenimentDrum.hpp"
 #include "Jucator.hpp"
 #include "Mancare.hpp"
 #include "Traseu.hpp"
@@ -43,9 +45,13 @@ int main() {
     j.faUpgrade("palarie");
     j.faUpgrade("pantofi");
     j.faUpgrade("bluza");
+    j.getNoroc();
 
     Traseu t;
     t.pas(j);
+
+    EvenimentDrum e;
+    MemorieLoot m;
 
     return 0;
 }

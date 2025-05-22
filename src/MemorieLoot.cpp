@@ -73,3 +73,14 @@ std::shared_ptr<Loot> MemorieLoot::genereazaLootAleator(const Jucator &jucator) 
 
     return nullptr;
 }
+
+shared_ptr<Mancare> MemorieLoot::getMancare(const string& nume) const {
+    for (const auto& m : mancare) {
+        auto mancarePtr = dynamic_pointer_cast<Mancare>(m);
+        if (mancarePtr && mancarePtr->getNume() == nume) {
+            return make_shared<Mancare>(*mancarePtr);
+        }
+    }
+
+    return nullptr;
+}
