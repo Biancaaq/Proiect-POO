@@ -148,7 +148,9 @@ add_executable(${MAIN_EXECUTABLE_NAME} main.cpp ${SOURCES}
         include/MemorieLoot.hpp
         include/EvenimentTabara.hpp
         include/Reteta.hpp
-        include/EvenimentRau.hpp)
+        include/EvenimentRau.hpp
+        include/Meniu.hpp
+        src/Eveniment.cpp)
 
 # NOTE: Add all defined targets (e.g. executables, libraries, etc. )
 # NOTE: RUN_SANITIZERS is optional, if it's not present it will default to true

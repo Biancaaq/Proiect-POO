@@ -7,7 +7,7 @@
 using namespace std;
 
 
-Traseu::Traseu() : segmentCurent(0), distantaRamasa(0) {
+Traseu::Traseu() : segmentCurent(0), distantaRamasa(0), pozitieCurenta(0) {
     genereazaDistante();
     genereazaTraseu();
     distantaRamasa = distanteSegmente[0];
@@ -45,14 +45,14 @@ void Traseu::pas(Jucator& jucator) {
     jucator.consumaEnergie();
 
     if (distantaRamasa <= 0) {
-        segmentCurent++;
-        if (segmentCurent >= distanteSegmente.size()) {
+        pozitieCurenta++;
+        if (pozitieCurenta >= (int)traseu.size()) {
             cout << "Ai ajuns in oras!" << endl;
 
             return;
         }
 
-        TipLocatie locatie = traseu[segmentCurent * 2];
+        TipLocatie locatie = traseu[pozitieCurenta];
 
         if (locatie == TipLocatie::Rau) {
             cout << "Ai ajuns la un rau!" << endl;
@@ -62,6 +62,29 @@ void Traseu::pas(Jucator& jucator) {
             cout << "Ai ajuns intr-o tabara!" << endl;
         }
 
-        distantaRamasa = distanteSegmente[segmentCurent];
+        segmentCurent++;
+        if (segmentCurent < distanteSegmente.size()) {
+            distantaRamasa = distanteSegmente[segmentCurent];
+        }
     }
+}
+
+TipLocatie Traseu::getLocatieCurenta() const {
+    if (pozitieCurenta >= 0 && pozitieCurenta < (int)traseu.size()) {
+        return traseu[pozitieCurenta];
+    }
+
+    return TipLocatie::OrasFinal;
+}
+
+int Traseu::getNumarRau() const {
+    int count = 0;
+
+    for (int i = 0; i <= pozitieCurenta; ++i) {
+        if (traseu[i] == TipLocatie::Rau) {
+            count++;
+        }
+    }
+
+    return count;
 }

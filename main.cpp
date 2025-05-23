@@ -1,8 +1,5 @@
-#include <iostream>
-
-#include "EvenimentDrum.hpp"
 #include "Jucator.hpp"
-#include "Mancare.hpp"
+#include "Meniu.hpp"
 #include "Traseu.hpp"
 
 using namespace std;
@@ -47,9 +44,8 @@ int main() {
     j.faUpgrade("bluza");
     j.getNoroc();
 
-    Traseu t;
-    t.pas(j);
-
+    Meniu meniu;
+    meniu.ruleaza();
 
     return 0;
 }

@@ -7,8 +7,7 @@
 
 class Eveniment {
     public:
-    virtual void executa(Jucator& jucator, const MemorieLoot& memorie) = 0;
-    virtual ~Eveniment() = default;
+    virtual ~Eveniment() = 0;
 };
 
 #endif

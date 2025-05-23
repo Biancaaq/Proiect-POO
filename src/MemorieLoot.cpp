@@ -6,7 +6,6 @@
 #include <fstream>
 #include <random>
 #include <nlohmann/json.hpp>
-#include <cmath>
 
 using json = nlohmann::json;
 using namespace std;
