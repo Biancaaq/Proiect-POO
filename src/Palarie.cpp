@@ -5,7 +5,7 @@
 using namespace std;
 
 
-Palarie::Palarie() : Haina("Palarie simpla", 0.6, 1, 0, 0, 0, 0.0) {}
+Palarie::Palarie() : Haina("Palarie", 0.6, 1, 0, 0, 0.0) {}
 Palarie::~Palarie() = default;
 
 bool Palarie::upgrade(int& bani, Rucsac& rucsac) {

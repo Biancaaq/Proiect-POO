@@ -5,7 +5,7 @@
 using namespace std;
 
 
-Bluza::Bluza() : Haina("Bluza simpla", 1.0, 1, 0, 0, 0, 0.0) {}
+Bluza::Bluza() : Haina("Bluza", 1.0, 1, 0, 0, 0.0) {}
 Bluza::~Bluza() = default;
 
 bool Bluza::upgrade(int& bani, Rucsac& rucsac) {

@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Jucator.hpp"
 #include "Meniu.hpp"
 #include "Traseu.hpp"
@@ -34,15 +36,6 @@ int main() {
     /// std::ifstream fis("date.txt");
     /// for(int i = 0; i < nr2; ++i)
     ///     fis >> v2[i];
-
-
-
-    Jucator j;
-    j.faUpgrade("pantofi");
-    j.faUpgrade("palarie");
-    j.faUpgrade("pantofi");
-    j.faUpgrade("bluza");
-    j.getNoroc();
 
     Meniu meniu;
     meniu.ruleaza();

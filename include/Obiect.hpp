@@ -11,7 +11,7 @@ class Obiect {
 
     public:
     Obiect(const std::string& nume, double greutate);
-    virtual ~Obiect();
+    virtual ~Obiect() = 0;
 
     double getGreutate() const;
     const std::string& getNume() const;

@@ -5,14 +5,17 @@
 using namespace std;
 
 
-Pantofi::Pantofi() : Haina("Pantofi simpli", 0.8, 1, 0, 0, 0, 0.0) {}
+Pantofi::Pantofi() : Haina("Pantofi", 0.8, 1, 0, 0, 0.0) {}
 Pantofi::~Pantofi() = default;
 
 bool Pantofi::upgrade(int& bani, Rucsac& rucsac) {
+    cout << "am ajuns aici" << endl;
     if (nivel >= 3) {
         cout << "Pantofii sunt deja la nivel maxim." << endl;
         return false;
     }
+
+    cout << "am ajuns aici x2" << endl;
 
     int costBani = (nivel == 1 ? 10 : 20);
     map<string, int> materiale;
@@ -25,12 +28,16 @@ bool Pantofi::upgrade(int& bani, Rucsac& rucsac) {
         materiale["piele"] = 4;
     }
 
+    cout << "am ajuns aici x3" << endl;
+
     bool ok1 = true;
     if (bani < costBani) {
         cout << "Nu ai destui bani." << endl;
 
         ok1 = false;
     }
+
+    cout << "am ajuns aici x4" << endl;
 
     bool ok2 = true;
     for (const auto& [tip, cantitate] : materiale) {
@@ -51,7 +58,7 @@ bool Pantofi::upgrade(int& bani, Rucsac& rucsac) {
     }
 
     nivel++;
-    bonusViteza = 2;
+    bonusStamina = 5;
     greutate += 0.1;
     cout << "Pantofii au fost upgradati cu succes! Nivel curent: " << nivel << endl;
 

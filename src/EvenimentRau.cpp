@@ -28,8 +28,8 @@ void EvenimentRau::trecereRau(Jucator& jucator, int numarRau) {
         }
     }
 
-    cout << "Ai ajuns la raul cu numarul " << numarRau << endl;
     cout << "Pentru a-l traversa, ai nevoie de " << cost << " bani." << endl;
+    cout << "Ai strans " << jucator.getBani() << endl;
 
     if (jucator.getBani() >= cost) {
         jucator.scadeBani(cost);
@@ -38,6 +38,8 @@ void EvenimentRau::trecereRau(Jucator& jucator, int numarRau) {
     }
 
     else {
+        cout << "Insuficienti bani. Ai pierdut." << endl;
+        exit(0);
         //TODO: exceptie insuficienti bani, game over
     }
 }

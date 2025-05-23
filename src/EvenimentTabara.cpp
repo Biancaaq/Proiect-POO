@@ -9,41 +9,72 @@ using namespace std;
 
 
 void EvenimentTabara::regenereazaEnergie(Jucator& jucator) {
-    int energieMax = jucator.getEnergie();
-    jucator.cresteEnergie(energieMax);
+    jucator.recupereazaEnergie();
     cout << "Ai campat in tabara si ti-ai regenerat energia." << endl;
 }
 
 void EvenimentTabara::proceseazaCrafting(Jucator &jucator, const vector<Reteta>& retete, const MemorieLoot& memorie) {
     Rucsac& rucsac = jucator.getRucsac();
 
-    for (const auto& reteta : retete) {
-        const auto& ingrediente = reteta.getIngrediente();
-        bool suficienteIngrediente = true;
+    while (true) {
+        vector<const Reteta*> craftabile;
+        for (const auto& reteta : retete) {
+            const auto& ingrediente = reteta.getIngrediente();
+            bool suficienteIngrediente = true;
 
-        for (const auto& [nume, cantitate] : ingrediente) {
-            if (rucsac.numaraLoot(nume) < cantitate) {
-                suficienteIngrediente = false;
-                break;
+            for (const auto& [nume, cantitate] : ingrediente) {
+                if (rucsac.numaraLoot(nume) < cantitate) {
+                    suficienteIngrediente = false;
+                    break;
+                }
+            }
+
+            if (suficienteIngrediente) {
+                craftabile.push_back(&reteta);
             }
         }
 
-        if (suficienteIngrediente) {
-            for (const auto& [nume, cantitate] : ingrediente) {
-                rucsac.consumaLoot(nume, cantitate);
-            }
+        if (craftabile.empty()) {
+            cout << "Nu poti crafta nimmic" << endl;
+            break;
+        }
 
-            const string& rez = reteta.getRezultat();
-            shared_ptr<Loot> produs = memorie.getMancare(rez);
+        cout << "Ce doresti sa craftezi?" << endl;
+        for (size_t i = 0; i < craftabile.size(); i++) {
+            cout << i + 1 << ". " << craftabile[i]->getRezultat() << endl;
+        }
 
-            if (produs) {
-                rucsac.adaugaLoot(produs);
-                cout << "Ai craftat: " << produs->getNume() << endl;
-            }
+        cout << "0. Inapoi" << endl;
 
-            else {
-                //TODO: eroare nu s-a gasit obiectul si trebuie tratata exceptia ca nu e spatiu in ghizdan
-            }
+        int opt;
+        cin >> opt;
+        cin.ignore();
+
+        if (opt == 0) {
+            break;
+        }
+
+        if (opt < 1 || opt > (int)craftabile.size()) {
+            //TODO: eroare
+            continue;
+        }
+
+        const Reteta& retetaAleasa = *craftabile[opt-1];
+
+        const auto& ingrediente = retetaAleasa.getIngrediente();
+        for (const auto& [nume, cantitate] : ingrediente) {
+            rucsac.consumaLoot(nume, cantitate);
+        }
+
+        shared_ptr<Loot> produsFinal = memorie.getMancare(retetaAleasa.getRezultat());
+        if (produsFinal) {
+            rucsac.adaugaLoot(produsFinal);
+            cout << "Ai craftat: " << produsFinal->getNume() << endl;
+        }
+
+        else {
+            cout << "Obiectul de craftat nu a fost gasit" << endl;
+            //TODO: exceptie reteta invalida
         }
     }
 }
@@ -55,32 +86,49 @@ void EvenimentTabara::vindeLoot(Jucator& jucator) {
         cout << "Continutul rucsacului: " << endl;
         rucsac.afiseazaContinut(true);
 
-        cout << "Vrei sa vinzi un item? " << endl;
-        cout << "1. Da" << endl;
-        cout << "2. Nu" << endl;
+        cout << "Alege itemul pe care vrei sa il vinzi sau '0' pentru inapoi: " << endl;
         int opt;
         cin >> opt;
         cin.ignore();
 
-        if (opt != 1) {
+        if (opt == 0) {
             break;
         }
 
-        cout << "Introdu indexul itemului pe care vrei sa il vinzi: " << endl;
-        int index;
-        cin >> index;
-        cin.ignore();
-
         const auto& loot = rucsac.getLoot();
-        if (index < 1 || index > (int)loot.size()) {
+        if (opt < 1 || opt > (int)loot.size()) {
             //TODO: exceptie index invalid
             continue;
         }
 
-        int pret = loot[index - 1]->getPret();
+        int pret = loot[opt - 1]->getPret();
         jucator.adaugaBani(pret);
-        rucsac.aruncaLoot(index);
+        rucsac.aruncaLoot(opt);
 
         cout << "Loot vandut pentru " << pret << " bani." << endl;
     }
+}
+
+void EvenimentTabara::upgradeEchipament(Jucator &jucator) {
+    auto& echipamente = jucator.getEchipament();
+    cout << "Echipamente disponibile pentru upgrade: " << endl;
+    for (size_t i = 0; i < echipamente.size(); ++i) {
+        if (!echipamente[i]) {
+            cout << "Eroare: echipamentul de la indexul " << i << " este nullptr!" << endl;
+            continue;
+        }
+        cout << i + 1 << ". " << echipamente[i]->getNume() << " (nivel " << echipamente[i]->getNivel() << ")" << endl;
+    }
+
+    cout << "Alege echipamentul de upgradat sau 0 pentru a anula: ";
+    int alegere;
+    cin >> alegere;
+    cin.ignore();
+
+    if (alegere < 1 || alegere > (int)echipamente.size()) {;
+        return;
+    }
+
+    Haina* h = echipamente[alegere - 1];
+    jucator.faUpgrade(h->getNume());
 }

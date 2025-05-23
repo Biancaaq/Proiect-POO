@@ -13,8 +13,8 @@ class Loot : public Obiect {
     Loot(const std::string& nume, double greutate, int raritate, int pret);
     ~Loot() override;
 
-    virtual int getRaritate() const;
-    virtual int getPret() const;
+    int getRaritate() const;
+    int getPret() const;
 
 };
 

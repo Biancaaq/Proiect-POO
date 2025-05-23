@@ -12,20 +12,17 @@
 class Jucator {
    int energie;
    int bani;
-   int viteza;
    int rataReducereScadereEnergie;
    float noroc = 0.0f;
 
    Rucsac rucsac;
-   Palarie palarie;
-   Bluza bluza;
-   Pantaloni pantaloni;
-   Pantofi pantofi;
-   // vector de pointeri catre Ob
+   std::vector<Haina*> echipament;
 
    public:
-   explicit Jucator(int energie = 100, int bani = 0, int viteza = 1, int reducere = 0);
+   explicit Jucator(int energie = 100, int bani = 0, int reducere = 0);
    ~Jucator();
+   Jucator(const Jucator&);
+   Jucator& operator=(const Jucator&);
 
    void faUpgrade(const std::string& numeEchipament);
    void updateStatusuri();
@@ -33,15 +30,16 @@ class Jucator {
    void adaugaBani(int suma);
    void scadeBani(int suma);
 
-   int getViteza() const;
    void consumaEnergie();
    void scadeEnergie(int valoare);
    void cresteEnergie(int valoare);
    void consumaMancare(const Mancare& mancare);
+   void recupereazaEnergie();
    float getNoroc() const;
    Rucsac& getRucsac();
    int getEnergie() const;
    int getBani() const;
+   const std::vector<Haina*>& getEchipament() const;
 };
 
 #endif

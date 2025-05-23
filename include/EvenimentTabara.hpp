@@ -11,6 +11,7 @@ class EvenimentTabara : public Eveniment{
     void regenereazaEnergie(Jucator& jucator);
     void proceseazaCrafting(Jucator& jucator, const std::vector<Reteta>& retete, const MemorieLoot& memorie);
     void vindeLoot(Jucator& jucator);
+    void upgradeEchipament(Jucator& jucator);
 };
 
 #endif

@@ -7,7 +7,7 @@
 using namespace std;
 
 
-Traseu::Traseu() : segmentCurent(0), distantaRamasa(0), pozitieCurenta(0) {
+Traseu::Traseu() : segmentCurent(0), distantaRamasa(0), pozitieCurenta(0), locatieVizitata(false) {
     genereazaDistante();
     genereazaTraseu();
     distantaRamasa = distanteSegmente[0];
@@ -22,16 +22,22 @@ void Traseu::genereazaDistante() {
     for (int i = 0; i < 21; ++i) {
         distanteSegmente.push_back(dist(gen));
     }
+
+    for (auto& seg : distanteSegmente) {
+        cout << seg << " ";
+    }
 }
 
 void Traseu::genereazaTraseu() {
     traseu.clear();
 
+    int numarTabere = 0;
     for (int i = 0; i < 21; ++i) {
         traseu.push_back(TipLocatie::Drum);
         traseu.push_back(TipLocatie::Tabara);
+        numarTabere++;
 
-        if (i == 5 || i == 12 || i == 20) {
+        if (numarTabere == 6 || numarTabere == 13 || numarTabere == 21) {
             traseu.push_back(TipLocatie::Rau);
         }
     }
@@ -39,17 +45,27 @@ void Traseu::genereazaTraseu() {
     traseu.push_back(TipLocatie::OrasFinal);
 }
 
-void Traseu::pas(Jucator& jucator) {
-    int viteza = jucator.getViteza();
-    distantaRamasa -= viteza;
-    jucator.consumaEnergie();
+bool Traseu::pas(Jucator& jucator) {
+    if (distantaRamasa > 0) {
+        distantaRamasa--;
+        jucator.consumaEnergie();
 
-    if (distantaRamasa <= 0) {
+        locatieVizitata = false;
+
+        cout << "[DEBUG] PAS -> "
+             << ", distantaRamasa: " << distantaRamasa
+             << ", locatieVizitata: " << (locatieVizitata ? "true" : "false")
+             << ", pozitieCurenta: " << pozitieCurenta << endl;
+        return false;
+    }
+
+    if (distantaRamasa <= 0 && !locatieVizitata) {
         pozitieCurenta++;
+        locatieVizitata = true;
+
         if (pozitieCurenta >= (int)traseu.size()) {
             cout << "Ai ajuns in oras!" << endl;
-
-            return;
+            return true;
         }
 
         TipLocatie locatie = traseu[pozitieCurenta];
@@ -62,11 +78,28 @@ void Traseu::pas(Jucator& jucator) {
             cout << "Ai ajuns intr-o tabara!" << endl;
         }
 
-        segmentCurent++;
-        if (segmentCurent < distanteSegmente.size()) {
-            distantaRamasa = distanteSegmente[segmentCurent];
+        else if (locatie == TipLocatie::Drum) {
+            cout << "Ai ajuns pe un drum!" << endl;
         }
+
+        if (locatie == TipLocatie::Drum) {
+            segmentCurent++;
+
+            if (segmentCurent < distanteSegmente.size()) {
+                distantaRamasa = distanteSegmente[segmentCurent];
+            }
+
+            else {
+                distantaRamasa = 0;
+            }
+        }
+
+        locatieVizitata = false;
+
+        return true;
     }
+
+    return false;
 }
 
 TipLocatie Traseu::getLocatieCurenta() const {
@@ -87,4 +120,8 @@ int Traseu::getNumarRau() const {
     }
 
     return count;
+}
+
+void Traseu::setLocatieVizitata(bool vizitata) {
+    locatieVizitata = vizitata;
 }

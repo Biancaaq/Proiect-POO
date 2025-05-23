@@ -6,6 +6,7 @@
 #include <fstream>
 #include <random>
 #include <nlohmann/json.hpp>
+#include <iostream>
 
 using json = nlohmann::json;
 using namespace std;
@@ -13,6 +14,7 @@ using namespace std;
 
 void MemorieLoot::incarcaDinJSON(const std::string &fisierMancare, const std::string &fisierMateriale) {
     ifstream inMancare(fisierMancare);
+
     json jMancare;
     inMancare >> jMancare;
 
@@ -22,11 +24,13 @@ void MemorieLoot::incarcaDinJSON(const std::string &fisierMancare, const std::st
         int raritate = m["raritate"];
         int energie = m["energie"];
         int pret = m["pret"];
+        bool procesata = m["procesata"];
 
-        mancare.push_back(make_shared<Mancare>(nume, greutate, raritate, pret, energie));
+        mancare.push_back(make_shared<Mancare>(nume, greutate, raritate, pret, energie, procesata));
     }
 
     ifstream inMateriale(fisierMateriale);
+
     json jMateriale;
     inMateriale >> jMateriale;
 
@@ -41,7 +45,16 @@ void MemorieLoot::incarcaDinJSON(const std::string &fisierMancare, const std::st
 }
 
 std::shared_ptr<Loot> MemorieLoot::genereazaLootAleator(const Jucator &jucator) const {
-    vector<shared_ptr<Loot>> LootTotal = mancare;
+    vector<shared_ptr<Loot>> LootTotal;
+
+    for (const auto& m : mancare) {
+        auto mPtr = dynamic_pointer_cast<Mancare>(m);
+
+        if (mPtr && !mPtr->getProcesata()) {
+            LootTotal.push_back(mPtr);
+        }
+    }
+
     LootTotal.insert(LootTotal.end(), materiale.begin(), materiale.end());
 
     vector<double> sanse;

@@ -5,7 +5,7 @@
 using namespace std;
 
 
-Pantaloni::Pantaloni() : Haina("Pantaloni simpli", 1.2, 1, 0, 0, 0, 0.0) {}
+Pantaloni::Pantaloni() : Haina("Pantaloni", 1.2, 1, 0, 0, 0.0) {}
 Pantaloni::~Pantaloni() = default;
 
 bool Pantaloni::upgrade(int& bani, Rucsac& rucsac) {

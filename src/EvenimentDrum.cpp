@@ -9,7 +9,7 @@ using namespace std;
 
 
 void EvenimentDrum::interactLoot(Jucator& jucator, std::shared_ptr<Loot> loot) {
-    cout << "Ai gasit: " << loot->getNume() << " (greutate: " << loot->getGreutate() << " kg)" << endl;
+    cout << "Ai gasit: " << loot->getNume() << " (greutate: " << loot->getGreutate() << " kg)" << ", raritate: " << loot->getRaritate() << endl;
     cout << "Vrei sa il iei?" << endl;
     cout << "1. Da" << endl;
     cout << "2. Nu" << endl;
@@ -112,7 +112,7 @@ void EvenimentDrum::executa(Jucator& jucator, const MemorieLoot& memorie) {
     mt19937 gen(rd());
     uniform_int_distribution<> sansaLoot(1, 100);
 
-    if (sansaLoot(gen) <= 70) {
+    if (sansaLoot(gen) <= 100) {
         shared_ptr<Loot> lootGasit = memorie.genereazaLootAleator(jucator);
         interactLoot(jucator, lootGasit);
     }
@@ -134,7 +134,7 @@ void EvenimentDrum::executa(Jucator& jucator, const MemorieLoot& memorie) {
             uniform_int_distribution<int> sansaSucces(1, 100);
             if (sansaSucces(gen) <= 50) {
                 cout << "Vanatoarea a avut succes! Ai primit x1 carne de iepure." << endl;
-                shared_ptr<Loot> carne = make_shared<Mancare>("carne de iepure", 0.4, 3, 12, 25);
+                shared_ptr<Loot> carne = make_shared<Mancare>("carne de iepure", 0.4, 3, 12, 25, false);
                 interactLoot(jucator, carne);
             }
 

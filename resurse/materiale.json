@@ -1,5 +1,5 @@
 [
-  { "nume": "piele", "greutate": 0.3, "raritate": 2, "pret": 8 },
+  { "nume": "piele", "greutate": 0.3, "raritate": 1, "pret": 6 },
   { "nume": "lana", "greutate": 0.2, "raritate": 4, "pret": 12 },
   { "nume": "lemn", "greutate": 0.5, "raritate": 1, "pret": 4 },
   { "nume": "piatra", "greutate": 0.7, "raritate": 1, "pret": 4 },

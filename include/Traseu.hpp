@@ -19,16 +19,19 @@ class Traseu {
     std::vector<TipLocatie> traseu;
     size_t segmentCurent;
     int distantaRamasa;
-    int pozitieCurenta = 0;
+    int pozitieCurenta;
+    bool locatieVizitata;
 
     public:
     Traseu();
     void genereazaDistante();
     void genereazaTraseu();
-    void pas(Jucator& jucator);
+    bool pas(Jucator& jucator);
 
     TipLocatie getLocatieCurenta() const;
     int getNumarRau() const;
+
+    void setLocatieVizitata(bool vizitata);
 };
 
 #endif
