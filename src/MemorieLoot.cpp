@@ -7,13 +7,14 @@
 #include <random>
 #include <nlohmann/json.hpp>
 #include <iostream>
+#include "DeschidereFisierJSON.hpp"
 
 using json = nlohmann::json;
 using namespace std;
 
 
 void MemorieLoot::incarcaDinJSON(const std::string &fisierMancare, const std::string &fisierMateriale) {
-    ifstream inMancare(fisierMancare);
+    ifstream inMancare = deschideFisierJson(fisierMancare);
 
     json jMancare;
     inMancare >> jMancare;
@@ -29,7 +30,7 @@ void MemorieLoot::incarcaDinJSON(const std::string &fisierMancare, const std::st
         mancare.push_back(make_shared<Mancare>(nume, greutate, raritate, pret, energie, procesata));
     }
 
-    ifstream inMateriale(fisierMateriale);
+    ifstream inMateriale = deschideFisierJson(fisierMateriale);
 
     json jMateriale;
     inMateriale >> jMateriale;

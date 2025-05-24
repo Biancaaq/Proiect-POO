@@ -130,6 +130,6 @@ void EvenimentTabara::upgradeEchipament(Jucator &jucator) {
         return;
     }
 
-    Haina* const h = echipamente[alegere - 1];
+    const Haina* h = echipamente[alegere - 1];
     jucator.faUpgrade(h->getNume());
 }

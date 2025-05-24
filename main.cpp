@@ -1,8 +1,6 @@
 #include <iostream>
-
-#include "Jucator.hpp"
 #include "Meniu.hpp"
-#include "Traseu.hpp"
+
 
 using namespace std;
 
