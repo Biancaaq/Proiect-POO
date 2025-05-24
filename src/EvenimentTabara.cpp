@@ -106,6 +106,7 @@ void EvenimentTabara::vindeLoot(Jucator& jucator) {
         rucsac.aruncaLoot(opt);
 
         cout << "Loot vandut pentru " << pret << " bani." << endl;
+        break;
     }
 }
 
@@ -129,6 +130,6 @@ void EvenimentTabara::upgradeEchipament(Jucator &jucator) {
         return;
     }
 
-    Haina* h = echipamente[alegere - 1];
+    Haina* const h = echipamente[alegere - 1];
     jucator.faUpgrade(h->getNume());
 }

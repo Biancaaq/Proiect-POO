@@ -30,8 +30,6 @@ class Traseu {
 
     TipLocatie getLocatieCurenta() const;
     int getNumarRau() const;
-
-    void setLocatieVizitata(bool vizitata);
 };
 
 #endif
