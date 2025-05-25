@@ -92,7 +92,7 @@ void EvenimentTabara::vindeLoot(Jucator& jucator) {
         if (rucsac.getLoot().empty()) {
             return;
         }
-        
+
         cout << "Continutul rucsacului: " << endl;
         rucsac.afiseazaContinut(true);
 
