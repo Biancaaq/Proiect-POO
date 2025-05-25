@@ -1,10 +1,9 @@
-#ifndef UTILS_HPP
-#define UTILS_HPP
+#ifndef DESCHIDERE_FISIER_JSON_HPP
+#define DESCHIDERE_FISIER_JSON_HPP
 
 #include <fstream>
 #include <stdexcept>
 #include <string>
-#include <filesystem>
 #include <iostream>
 
 inline std::ifstream deschideFisierJson(const std::string& nume) {

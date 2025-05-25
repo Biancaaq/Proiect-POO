@@ -2,11 +2,14 @@
 #include <cmath>
 #include "Jucator.hpp"
 #include "Exceptii.hpp"
+#include "Palarie.hpp"
+#include "Pantaloni.hpp"
+#include "Pantofi.hpp"
 
 using namespace std;
 
 
-Jucator::Jucator(int energie, int bani, int reducere) : energie(energie), bani(bani), rataReducereScadereEnergie(reducere) {
+Jucator::Jucator(int energie, int bani, int reducere, float noroc) : energie(energie), bani(bani), rataReducereScadereEnergie(reducere), noroc(noroc) {
     echipament.push_back(new Palarie());
     echipament.push_back(new Bluza());
     echipament.push_back(new Pantaloni());
@@ -191,6 +194,11 @@ int Jucator::getBani() const {
     return bani;
 }
 
+int Jucator::getRataScadereEnergie() const {
+    return rataReducereScadereEnergie;
+}
+
+
 void Jucator::adaugaBani(int suma) {
     bani += suma;
 }
@@ -205,4 +213,16 @@ void Jucator::scadeBani(int suma) {
 
 const vector<Haina*>& Jucator::getEchipament() const {
     return echipament;
+}
+
+vector<Haina*>& Jucator::getEchipament() {
+    return echipament;
+}
+
+void Jucator::setBonusSuperJucator(bool bonus) {
+    bonusSuperJucator = bonus;
+}
+
+bool Jucator::areBonusSuperJucator() const {
+    return bonusSuperJucator;
 }

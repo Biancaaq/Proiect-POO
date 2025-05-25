@@ -49,3 +49,9 @@ bool Bluza::upgrade(int& bani, Rucsac& rucsac) {
 
     return true;
 }
+
+void Bluza::setNivel2() {
+    nivel = 2;
+    bonusStamina = 20;
+    greutate += 0.2;
+}

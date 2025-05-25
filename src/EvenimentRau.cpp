@@ -35,6 +35,8 @@ void EvenimentRau::trecereRau(Jucator& jucator, int numarRau) {
     if (jucator.getBani() >= cost) {
         jucator.scadeBani(cost);
         cout << "Ai trecut raul cu succes." << endl << endl;
+
+        jucator.adaugaNoroc(0.0025f);
     }
 
     else {

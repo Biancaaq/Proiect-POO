@@ -24,6 +24,7 @@ class Meniu {
 
     public:
     void ruleaza();
+    void initializareJucator();
 };
 
 #endif

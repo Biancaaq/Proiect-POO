@@ -48,3 +48,9 @@ bool Pantaloni::upgrade(int& bani, Rucsac& rucsac) {
 
     return true;
 }
+
+void Pantaloni::setNivel2() {
+    nivel = 2;
+    bonusBuzunar = 2.5;
+    greutate += 0.2;
+}

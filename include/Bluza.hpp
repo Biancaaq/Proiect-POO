@@ -9,6 +9,7 @@ public:
     ~Bluza() override;
 
     bool upgrade(int& bani, Rucsac& rucsac) override;
+    void setNivel2() override;
 };
 
 #endif

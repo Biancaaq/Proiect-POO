@@ -1,6 +1,7 @@
 #include <iostream>
 #include <memory>
 #include <limits>
+#include <cmath>
 #include "EvenimentTabara.hpp"
 #include "Mancare.hpp"
 #include "Material.hpp"
@@ -102,6 +103,11 @@ void EvenimentTabara::vindeLoot(Jucator& jucator) {
         }
 
         int pret = rucsac.getLoot()[opt - 1]->getPret();
+
+        if (jucator.areBonusSuperJucator()) {
+            pret += 5;
+        }
+
         jucator.adaugaBani(pret);
         rucsac.aruncaLoot(opt);
 

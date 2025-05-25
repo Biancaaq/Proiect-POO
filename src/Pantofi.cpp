@@ -47,3 +47,9 @@ bool Pantofi::upgrade(int& bani, Rucsac& rucsac) {
 
     return true;
 }
+
+void Pantofi::setNivel2() {
+    nivel = 2;
+    bonusStamina = 5;
+    greutate += 0.1;
+}

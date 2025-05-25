@@ -22,6 +22,8 @@ public:
     int getBonusReducereScadereStamina() const;
     int getBonusBuzunar() const;
     int getNivel() const;
+
+    virtual void setNivel2() = 0;
 };
 
 #endif

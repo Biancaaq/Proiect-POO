@@ -151,7 +151,8 @@ add_executable(${MAIN_EXECUTABLE_NAME} main.cpp ${SOURCES}
         include/EvenimentRau.hpp
         include/Meniu.hpp
         src/Eveniment.cpp
-        include/Exceptii.hpp)
+        include/Exceptii.hpp
+        include/SuperJucator.hpp)
 
 # NOTE: Add all defined targets (e.g. executables, libraries, etc. )
 # NOTE: RUN_SANITIZERS is optional, if it's not present it will default to true

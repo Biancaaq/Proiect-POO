@@ -47,3 +47,9 @@ bool Palarie::upgrade(int& bani, Rucsac& rucsac) {
 
     return true;
 }
+
+void Palarie::setNivel2() {
+    nivel = 2;
+    bonusReducereScadereStamina = 1;
+    greutate += 0.1;
+}
