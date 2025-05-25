@@ -1,5 +1,6 @@
-#include "Rucsac.hpp"
 #include <iostream>
+#include "Rucsac.hpp"
+#include "Exceptii.hpp"
 
 using namespace std;
 
@@ -9,16 +10,19 @@ Rucsac::~Rucsac() = default;
 
 int Rucsac::numaraLoot(const string& tip) const {
     int total = 0;
+
     for (const auto& l : loot) {
         if (l->getNume() == tip) {
             total++;
         }
     }
+
     return total;
 }
 
 bool Rucsac::consumaLoot(const string& tip, int cantitate) {
     int cnt = 0;
+
     for (auto i = loot.begin(); i != loot.end() && cnt < cantitate;) {
         if ((*i)->getNume() == tip) {
             i = loot.erase(i);
@@ -29,21 +33,37 @@ bool Rucsac::consumaLoot(const string& tip, int cantitate) {
             ++i;
         }
     }
-    return cnt == cantitate;
+
+    if (cnt != cantitate) {
+        throw EroareMateriale("Nu ai suficiente materiale de tip '" + tip + "'.");
+    }
+
+    return true;
 }
 
 void Rucsac::adaugaLoot(std::shared_ptr<Loot>& obiect) {
+    if (!obiect) {
+        throw EroarePointerNull("Obiectul adaugat este null.");
+    }
+
+    if (!incapeInRucsac(obiect)) {
+        throw EroareInput("Obiectul nu incape in rucsac.");
+    }
+
     loot.push_back(obiect);
 }
 
 bool Rucsac::incapeInRucsac(const std::shared_ptr<Loot>& obiect) const {
+    if (!obiect) {
+        throw EroarePointerNull("Obiectul este null.");
+    }
+
     return getGreutateTotala() + obiect->getGreutate() <= capacitate;
 }
 
 void Rucsac::afiseazaContinut(bool index) const {
     if (loot.empty()) {
-        cout << "Rucsacul este gol." << endl;
-        return; //TODO: exceptie rucsac gol
+        throw EroareRucsacGol("Rucsacul este gol.");
     }
 
     for (size_t i = 0; i < loot.size(); ++i) {
@@ -53,9 +73,12 @@ void Rucsac::afiseazaContinut(bool index) const {
 }
 
 bool Rucsac::aruncaLoot(int index) {
-    if (index < 1 || index > (int)loot.size()) {
-        cout << "Index invalid." << endl; //TODO: exceptie
-        return false;
+    if (loot.empty()) {
+        throw EroareRucsacGol("Rucsacul este gol.");
+    }
+
+    if (index < 1 || index > static_cast<int>(loot.size())) {
+        throw EroareInput("Index invalid.");
     }
 
     loot.erase(loot.begin() + (index - 1));

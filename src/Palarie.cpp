@@ -1,6 +1,7 @@
 #include <iostream>
 #include <map>
 #include "Palarie.hpp"
+#include "Exceptii.hpp"
 
 using namespace std;
 
@@ -10,9 +11,7 @@ Palarie::~Palarie() = default;
 
 bool Palarie::upgrade(int& bani, Rucsac& rucsac) {
     if (nivel >= 3) {
-        cout << "Palaria este deja la nivel maxim." << endl;
-
-        return false;
+        throw EroareUpgrade("Palaria este deja la nivel maxim.");
     }
 
     int costBani = (nivel == 1 ? 10 : 15);
@@ -26,29 +25,20 @@ bool Palarie::upgrade(int& bani, Rucsac& rucsac) {
         materiale["lana"] = 2;
     }
 
-    bool ok1 = true;
     if (bani < costBani) {
-        cout << "Nu ai destui bani." << endl;
-
-        ok1 = false;
+        throw EroareBani("Nu ai destui bani pentru a realiza upgradeul.");
     }
 
-    bool ok2 = true;
     for (const auto& [tip, cantitate] : materiale) {
         if (rucsac.numaraLoot(tip) < cantitate) {
-            cout << "Nu ai destule materiale de tip " << tip << "." << endl;
-
-            ok2 = false;
+            throw EroareMateriale("Nu ai suficiente materiale de tip " + tip + " pentru upgrade.");
         }
     }
 
-    if (ok1 == false || ok2 == false) {
-        return false;
-    }
-
     bani -= costBani;
-    for (const auto& [tip, cantitate] : materiale)
+    for (const auto& [tip, cantitate] : materiale) {
         rucsac.consumaLoot(tip, cantitate);
+    }
 
     nivel++;
     bonusReducereScadereStamina = 1;

@@ -1,51 +1,62 @@
+#include <fstream>
+#include <random>
+#include <nlohmann/json.hpp>
+#include <iostream>
 #include "MemorieLoot.hpp"
 #include "Mancare.hpp"
 #include "Material.hpp"
 #include "Jucator.hpp"
 #include "Loot.hpp"
-#include <fstream>
-#include <random>
-#include <nlohmann/json.hpp>
-#include <iostream>
 #include "DeschidereFisierJSON.hpp"
+#include "Exceptii.hpp"
 
 using json = nlohmann::json;
 using namespace std;
 
 
-void MemorieLoot::incarcaDinJSON(const std::string &fisierMancare, const std::string &fisierMateriale) {
-    ifstream inMancare = deschideFisierJson(fisierMancare);
+void MemorieLoot::incarcaDinJSON(const string &fisierMancare, const string &fisierMateriale) {
+    try {
+        ifstream inMancare = deschideFisierJson(fisierMancare);
+        json jMancare;
+        inMancare >> jMancare;
 
-    json jMancare;
-    inMancare >> jMancare;
+        for (const auto& m : jMancare) {
+            string nume = m["nume"];
+            double greutate = m["greutate"];
+            int raritate = m["raritate"];
+            int energie = m["energie"];
+            int pret = m["pret"];
+            bool procesata = m["procesata"];
 
-    for (const auto& m: jMancare) {
-        string nume = m["nume"];
-        double greutate = m["greutate"];
-        int raritate = m["raritate"];
-        int energie = m["energie"];
-        int pret = m["pret"];
-        bool procesata = m["procesata"];
-
-        mancare.push_back(make_shared<Mancare>(nume, greutate, raritate, pret, energie, procesata));
+            mancare.push_back(make_shared<Mancare>(nume, greutate, raritate, pret, energie, procesata));
+        }
     }
 
-    ifstream inMateriale = deschideFisierJson(fisierMateriale);
+    catch (const exception& e) {
+        throw EroareParsingJSON("Eroare la parsarea fisierului de mancare.");
+    }
 
-    json jMateriale;
-    inMateriale >> jMateriale;
+    try {
+        ifstream inMateriale = deschideFisierJson(fisierMateriale);
+        json jMateriale;
+        inMateriale >> jMateriale;
 
-    for (const auto& m: jMateriale) {
-        string nume = m["nume"];
-        double greutate = m["greutate"];
-        int raritate = m["raritate"];
-        int pret = m["pret"];
+        for (const auto& m : jMateriale) {
+            string nume = m["nume"];
+            double greutate = m["greutate"];
+            int raritate = m["raritate"];
+            int pret = m["pret"];
 
-        materiale.push_back(make_shared<Material>(nume, greutate, raritate, pret));
+            materiale.push_back(make_shared<Material>(nume, greutate, raritate, pret));
+        }
+    }
+
+    catch (const exception& e) {
+        throw EroareParsingJSON("Eroare la parsarea fisierului de materiale.");
     }
 }
 
-std::shared_ptr<Loot> MemorieLoot::genereazaLootAleator(const Jucator &jucator) const {
+shared_ptr<Loot> MemorieLoot::genereazaLootAleator(const Jucator &jucator) const {
     vector<shared_ptr<Loot>> LootTotal;
 
     for (const auto& m : mancare) {
@@ -57,6 +68,10 @@ std::shared_ptr<Loot> MemorieLoot::genereazaLootAleator(const Jucator &jucator) 
     }
 
     LootTotal.insert(LootTotal.end(), materiale.begin(), materiale.end());
+
+    if (LootTotal.empty()) {
+        throw EroarePointerNull("Nu exista loot disponibil pentru generare.");
+    }
 
     vector<double> sanse;
     for (const auto& l : LootTotal) {
@@ -78,17 +93,19 @@ std::shared_ptr<Loot> MemorieLoot::genereazaLootAleator(const Jucator &jucator) 
 
     for (size_t i = 0; i < LootTotal.size(); i++) {
         cumulata += sanse[i];
+
         if (nr <= cumulata) {
             return LootTotal[i];
         }
     }
 
-    return nullptr;
+    throw EroarePointerNull("Nu s-a putut genera niciun loot.");
 }
 
 shared_ptr<Mancare> MemorieLoot::getMancare(const string& nume) const {
     for (const auto& m : mancare) {
         auto mancarePtr = dynamic_pointer_cast<Mancare>(m);
+
         if (mancarePtr && mancarePtr->getNume() == nume) {
             return make_shared<Mancare>(*mancarePtr);
         }

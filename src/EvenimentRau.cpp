@@ -1,11 +1,13 @@
-#include "EvenimentRau.hpp"
 #include <iostream>
+#include "EvenimentRau.hpp"
+#include "Exceptii.hpp"
 
 using namespace std;
 
 
 void EvenimentRau::trecereRau(Jucator& jucator, int numarRau) {
     int cost = 0;
+
     switch (numarRau) {
         case 1: {
             cost = 70;
@@ -23,8 +25,7 @@ void EvenimentRau::trecereRau(Jucator& jucator, int numarRau) {
         }
 
         default: {
-            //TODO: exceptie rau invalid
-            break;
+            throw EroareInput("Numarul raului este invalid. Acesta poate fi 1, 2 sau 3.");
         }
     }
 
@@ -33,13 +34,10 @@ void EvenimentRau::trecereRau(Jucator& jucator, int numarRau) {
 
     if (jucator.getBani() >= cost) {
         jucator.scadeBani(cost);
-
-        cout << "Ai trecut raul cu succes." << endl;
+        cout << "Ai trecut raul cu succes." << endl << endl;
     }
 
     else {
-        cout << "Insuficienti bani. Ai pierdut." << endl;
-        exit(0);
-        //TODO: exceptie insuficienti bani, game over
+        throw EroareBani("Nu ai suficienti bani pentru a trece raul. Ai pierdut jocul.");
     }
 }

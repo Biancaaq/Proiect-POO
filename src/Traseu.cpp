@@ -1,8 +1,9 @@
-#include "Traseu.hpp"
-#include "Jucator.hpp"
 #include <iostream>
 #include <random>
 #include <vector>
+#include "Traseu.hpp"
+#include "Jucator.hpp"
+#include "Exceptii.hpp"
 
 using namespace std;
 
@@ -46,10 +47,13 @@ void Traseu::genereazaTraseu() {
 }
 
 bool Traseu::pas(Jucator& jucator) {
+    if (pozitieCurenta >= (int)traseu.size()) {
+        throw EroareAplicatie("Pozitie curenta invalida.");
+    }
+
     if (distantaRamasa > 0) {
         distantaRamasa--;
         jucator.consumaEnergie();
-
         locatieVizitata = false;
 
         cout << "[DEBUG] PAS -> "
@@ -63,8 +67,7 @@ bool Traseu::pas(Jucator& jucator) {
     locatieVizitata = true;
 
     if (pozitieCurenta >= (int)traseu.size()) {
-        cout << "Ai ajuns in oras!" << endl;
-        return true;
+        throw JocCastigat("Ai ajuns in oras! Felicitari, ai castigat jocul!");
     }
 
     TipLocatie locatie = traseu[pozitieCurenta];
@@ -101,14 +104,18 @@ bool Traseu::pas(Jucator& jucator) {
 }
 
 TipLocatie Traseu::getLocatieCurenta() const {
-    if (pozitieCurenta >= 0 && pozitieCurenta < (int)traseu.size()) {
-        return traseu[pozitieCurenta];
+    if (pozitieCurenta < 0 || pozitieCurenta >= (int)traseu.size()) {
+        throw EroareAplicatie("Pozitie curenta invalida.");
     }
 
-    return TipLocatie::OrasFinal;
+    return traseu[pozitieCurenta];
 }
 
 int Traseu::getNumarRau() const {
+    if (pozitieCurenta >= (int)traseu.size()) {
+        throw EroareAplicatie("Pozitie curenta invalida.");
+    }
+
     int count = 0;
 
     for (int i = 0; i <= pozitieCurenta; ++i) {

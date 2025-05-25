@@ -1,6 +1,7 @@
 #include <iostream>
 #include <map>
 #include "Pantofi.hpp"
+#include "Exceptii.hpp"
 
 using namespace std;
 
@@ -9,13 +10,9 @@ Pantofi::Pantofi() : Haina("Pantofi", 0.8, 1, 0, 0, 0.0) {}
 Pantofi::~Pantofi() = default;
 
 bool Pantofi::upgrade(int& bani, Rucsac& rucsac) {
-    cout << "am ajuns aici" << endl;
     if (nivel >= 3) {
-        cout << "Pantofii sunt deja la nivel maxim." << endl;
-        return false;
+        throw EroareUpgrade("Pantofii sunt deja la nivel maxim.");
     }
-
-    cout << "am ajuns aici x2" << endl;
 
     int costBani = (nivel == 1 ? 10 : 20);
     map<string, int> materiale;
@@ -28,28 +25,14 @@ bool Pantofi::upgrade(int& bani, Rucsac& rucsac) {
         materiale["piele"] = 4;
     }
 
-    cout << "am ajuns aici x3" << endl;
-
-    bool ok1 = true;
     if (bani < costBani) {
-        cout << "Nu ai destui bani." << endl;
-
-        ok1 = false;
+        throw EroareBani("Nu ai destui bani pentru a realiza upgradeul.");
     }
 
-    cout << "am ajuns aici x4" << endl;
-
-    bool ok2 = true;
     for (const auto& [tip, cantitate] : materiale) {
         if (rucsac.numaraLoot(tip) < cantitate) {
-            cout << "Nu ai suficienta piele." << endl;
-
-            ok2 = false;
+            throw EroareMateriale("Nu ai suficiente materiale de tip " + tip + " pentru upgrade.");
         }
-    }
-
-    if (ok1 == false || ok2 == false) {
-        return false;
     }
 
     bani -= costBani;

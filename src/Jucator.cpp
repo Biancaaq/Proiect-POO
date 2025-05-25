@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cmath>
 #include "Jucator.hpp"
+#include "Exceptii.hpp"
+
 using namespace std;
 
 
@@ -54,13 +56,28 @@ Jucator& Jucator::operator=(const Jucator& other) {
         rucsac = other.rucsac;
 
         for (auto* h : other.echipament) {
-            if (h->getNume() == "Palarie") echipament.push_back(new Palarie(*dynamic_cast<Palarie*>(h)));
-            else if (h->getNume() == "Bluza") echipament.push_back(new Bluza(*dynamic_cast<Bluza*>(h)));
-            else if (h->getNume() == "Pantaloni") echipament.push_back(new Pantaloni(*dynamic_cast<Pantaloni*>(h)));
-            else if (h->getNume() == "Pantofi") echipament.push_back(new Pantofi(*dynamic_cast<Pantofi*>(h)));
-            else echipament.push_back(nullptr);
+            if (h->getNume() == "Palarie") {
+                echipament.push_back(new Palarie(*dynamic_cast<Palarie*>(h)));
+            }
+
+            else if (h->getNume() == "Bluza") {
+                echipament.push_back(new Bluza(*dynamic_cast<Bluza*>(h)));
+            }
+
+            else if (h->getNume() == "Pantaloni") {
+                echipament.push_back(new Pantaloni(*dynamic_cast<Pantaloni*>(h)));
+            }
+
+            else if (h->getNume() == "Pantofi") {
+                echipament.push_back(new Pantofi(*dynamic_cast<Pantofi*>(h)));
+            }
+
+            else {
+                echipament.push_back(nullptr);
+            }
         }
     }
+
     return *this;
 }
 
@@ -83,6 +100,10 @@ void Jucator::faUpgrade(const string& numeEchipament) {
         upgradat = echipament[3]->upgrade(bani, rucsac);
     }
 
+    else {
+        throw EroareInput("Numele echipamentului este invalid.");
+    }
+
     if (upgradat) {
         adaugaNoroc(0.00125f);
         cout << "Noroc actual: " << noroc * 100 << "%" << endl;
@@ -90,6 +111,10 @@ void Jucator::faUpgrade(const string& numeEchipament) {
 }
 
 void::Jucator::updateStatusuri() {
+    for (auto* h : echipament) {
+        if (!h) throw EroarePointerNull("Echipament null.");
+    }
+
     energie = 100 + echipament[1]->getBonusStamina();
     rataReducereScadereEnergie = 0 + echipament[0]->getBonusReducereScadereStamina();
 
@@ -104,7 +129,16 @@ void Jucator::adaugaNoroc(float bonus) {
 void Jucator::consumaEnergie() {
     double greutateLoot = rucsac.getGreutateTotala();
     double greutateRucsac = rucsac.getGreutate();
-    double greutateHaine = echipament[0]->getGreutate() + echipament[2]->getGreutate() + echipament[3]->getGreutate() + echipament[1]->getGreutate();
+    double greutateHaine = 0.0;
+
+    for (auto* h : echipament) {
+        if (!h) {
+            throw EroarePointerNull("Echipament null.");
+        }
+
+        greutateHaine += h->getGreutate();
+    }
+
     double greutateTotala = greutateLoot + greutateRucsac + greutateHaine;
 
     double scadereDeBaza = greutateTotala * 2.0;
@@ -115,15 +149,16 @@ void Jucator::consumaEnergie() {
 
     if (energie < 0 ) {
         energie = 0;
-        //TODO: joc pierdut
+        throw EroareEnergie("Ai ramas fara energie! Joc pierdut.");
     }
 }
 
 void Jucator::scadeEnergie(int valoare) {
     energie -= valoare;
+
     if (energie < 0) {
         energie = 0;
-        //TODO: joc pierdut
+        throw EroareEnergie("Ai ramas fara energie! Joc pierdut.");
     }
 }
 
@@ -137,7 +172,7 @@ void Jucator::recupereazaEnergie() {
 
 void Jucator::consumaMancare(const Mancare& mancare) {
     cresteEnergie(mancare.getEnergieRecuperata());
-    cout << "Ai consumat " << mancare.getNume() << " si ai regenerat " << mancare.getEnergieRecuperata() << " energie." << endl;
+    cout << "Ai consumat " << mancare.getNume() << ", (procesata: " << mancare.getProcesata() << ") si ai regenerat " << mancare.getEnergieRecuperata() << " energie." << endl;
 }
 
 float Jucator::getNoroc() const {
@@ -161,10 +196,11 @@ void Jucator::adaugaBani(int suma) {
 }
 
 void Jucator::scadeBani(int suma) {
-    bani -= suma;
-    if (bani < 0) {
-        bani = 0;
+    if (suma > bani) {
+        throw EroareBani("Nu ai suficienti bani pentru aceasta actiune.");
     }
+
+    bani -= suma;
 }
 
 const vector<Haina*>& Jucator::getEchipament() const {
