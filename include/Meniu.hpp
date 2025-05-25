@@ -20,11 +20,16 @@ class Meniu {
     EvenimentRau rau;
     Traseu traseu;
 
+    Meniu();
+    Meniu(const Meniu&) = delete;
+    Meniu& operator=(const Meniu&) = delete;
+
     void startRun();
+    void initializareJucator();
 
     public:
+    static Meniu& getInstanta();
     void ruleaza();
-    void initializareJucator();
 };
 
 #endif

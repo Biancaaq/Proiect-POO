@@ -54,6 +54,10 @@ void EvenimentTabara::proceseazaCrafting(Jucator &jucator, const vector<Reteta>&
         int opt;
         cin >> opt;
 
+        if (opt == -1) {
+            exit(0);
+        }
+
         if (!cin || opt < 0 || opt > (int)craftabile.size()) {
             throw EroareInput("Optiune invalida.");
         }
@@ -91,6 +95,10 @@ void EvenimentTabara::vindeLoot(Jucator& jucator) {
         cout << "Alege itemul pe care vrei sa il vinzi sau '0' pentru inapoi: " << endl;
         int opt;
         cin >> opt;
+
+        if (opt == -1) {
+            exit(0);
+        }
 
         if (!cin || opt < 0 || opt > (int)rucsac.getLoot().size()) {
             throw EroareInput("Index invalid pentru loot.");
@@ -135,6 +143,9 @@ void EvenimentTabara::upgradeEchipament(Jucator &jucator) {
     int alegere;
     cin >> alegere;
 
+    if (alegere == -1) {
+        exit(0);
+    }
 
     if (!cin || alegere < 0 || alegere > (int)echipamente.size()) {
         throw EroareInput("Optiune invalida.");

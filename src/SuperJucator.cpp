@@ -98,24 +98,44 @@ ostream& operator<<(ostream& out, const SuperJucator& s) {
 istream& operator>>(istream& in, SuperJucator& s) {
     cout << "Introdu energie maxima (max 150): ";
     in >> s.energieMaxima;
+
+    if (s.energieMaxima == -1) {
+        exit(0);
+    }
+
     if (!cin || s.energieMaxima <= 0) {
         throw EroareInput("Date invalide.");
     }
 
     cout << "Introdu bani initiali (max 100): ";
     in >> s.baniInitiali;
+
+    if (s.baniInitiali == -1) {
+        exit(0);
+    }
+
     if (!cin || s.energieMaxima <= 0) {
         throw EroareInput("Date invalide.");
     }
 
     cout << "Introdu rata scadere energie (max 3): ";
     in >> s.rataScadereEnergie;
+
+    if (s.rataScadereEnergie == -1) {
+        exit(0);
+    }
+
     if (!cin || s.energieMaxima <= 0) {
         throw EroareInput("Date invalide.");
     }
 
     cout << "Introdu noroc (0.0 - 0.5): ";
     in >> s.noroc;
+
+    if (s.noroc == -1) {
+        exit(0);
+    }
+
     if (!cin || s.energieMaxima <= 0.0) {
         throw EroareInput("Date invalide.");
     }
@@ -124,6 +144,10 @@ istream& operator>>(istream& in, SuperJucator& s) {
         int lvl;
         cout << "Introdu nivel pentru " << h->getNume() << " (1 sau 2): ";
         in >> lvl;
+
+        if (lvl == -1) {
+            exit(0);
+        }
 
         if (lvl != 1 && lvl != 2)
             throw EroareInput("Nivelul hainei trebuie sa fie 1 sau 2.");

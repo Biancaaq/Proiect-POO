@@ -12,6 +12,15 @@
 using namespace std;
 
 
+Meniu::Meniu() = default;
+
+Meniu& Meniu::getInstanta() {
+    static Meniu instanta;
+
+    return instanta;
+}
+
+
 void Meniu::startRun() {
     initializareJucator();
 
@@ -40,6 +49,10 @@ void Meniu::startRun() {
                         cout << "Alege: ";
 
                         cin >> optiune;
+
+                        if (optiune == -1) {
+                            exit(0);
+                        }
 
                         if (!cin || optiune < 0 || optiune > 3) {
                             cout << "Optiune invalida. Incearca din nou." << endl;
@@ -193,6 +206,10 @@ void Meniu::ruleaza() {
         int opt;
         cin >> opt;
 
+        if (opt == -1) {
+            exit(0);
+        }
+
         if (!cin || (opt != 1 && opt != 2)) {
             cout << "Optiune invalida. Incearca din nou." << endl << endl;
             cin.clear();
@@ -257,6 +274,10 @@ void Meniu::initializareJucator() {
 
                     cin >> opt;
 
+                    if (opt == -1) {
+                        exit(0);
+                    }
+
                     if (!cin || (opt != 1 && opt != 2)) {
                         throw EroareInput("Optiune invalida. Incearca din nou.");
                     }
@@ -295,7 +316,6 @@ void Meniu::initializareJucator() {
 
                     case 2: {
                         cout << "Refa statusurile." << endl;
-                        continue;
                     }
                 }
 

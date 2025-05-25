@@ -20,6 +20,7 @@ void Traseu::genereazaDistante() {
     uniform_int_distribution<> dist(2, 4);
 
     distanteSegmente.clear();
+
     for (int i = 0; i < 21; ++i) {
         distanteSegmente.push_back(dist(gen));
     }
@@ -29,6 +30,7 @@ void Traseu::genereazaTraseu() {
     traseu.clear();
 
     int numarTabere = 0;
+
     for (int i = 0; i < 21; ++i) {
         traseu.push_back(TipLocatie::Drum);
         traseu.push_back(TipLocatie::Tabara);

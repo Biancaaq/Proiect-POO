@@ -25,6 +25,10 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
 
             cin >> rasp;
 
+            if (rasp == -1) {
+                exit(0);
+            }
+
             if (!cin || (rasp != 1 && rasp != 2)) {
                 throw EroareInput("Optiune invalida.");
             }
@@ -95,6 +99,10 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
             int opt;
             cin >> opt;
 
+            if (opt == -1) {
+                exit(0);
+            }
+
             if (!cin || (opt != 1 && opt != 2)) {
                 cout << "Optiune invalida. Incearca din nou." << endl;
 
@@ -131,6 +139,10 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
 
             int opt;
             cin >> opt;
+
+            if (opt == -1) {
+                exit(0);
+            }
 
             if (!cin || (opt != 1 && opt != 2)) {
                 throw EroareInput("Optiune invalida.");
@@ -179,6 +191,10 @@ void EvenimentDrum::executa(Jucator& jucator, const MemorieLoot& memorie) {
 
                 cin >> opt;
 
+                if (opt == -1) {
+                    exit(0);
+                }
+
                 if (!cin || (opt != 1 && opt != 2)) {
                     throw EroareInput("Optiune invalida.");
                 }
@@ -224,6 +240,10 @@ void EvenimentDrum::aruncaLoot(Jucator& jucator) {
         int rasp;
         cin >> rasp;
 
+        if (rasp == -1) {
+            exit(0);
+        }
+
         if (!cin || (rasp != 1 && rasp != 2)) {
             throw EroareInput("Optiune invalida.");
         }
@@ -236,7 +256,9 @@ void EvenimentDrum::aruncaLoot(Jucator& jucator) {
 
         if (rasp == 1) {
             if (rucsac.getLoot().empty()) {
-                throw EroareInput("Rucsacul este gol. Nu ai ce arunca.");
+                cout << "Rucsacul este gol. Nu ai ce arunca." << endl;
+
+                return;
             }
 
             rucsac.afiseazaContinut(true);
@@ -244,6 +266,10 @@ void EvenimentDrum::aruncaLoot(Jucator& jucator) {
 
             int index;
             cin >> index;
+
+            if (index == -1) {
+                exit(0);
+            }
 
             if (!cin || index < 0 || index > (int)rucsac.getLoot().size()) {
                 throw EroareInput("Optiune invalida.");
@@ -278,6 +304,10 @@ void EvenimentDrum::consumaMancareDinRucsac(Jucator& jucator) {
 
         int alegere;
         cin >> alegere;
+
+        if (alegere == -1) {
+            exit(0);
+        }
 
         if (!cin || (alegere != 1 && alegere != 2)) {
             throw EroareInput("Optiune invalida.");
@@ -319,6 +349,10 @@ void EvenimentDrum::consumaMancareDinRucsac(Jucator& jucator) {
     int opt;
     cout << "Alege mancarea de consumat: ";
     cin >> opt;
+
+    if (opt == -1) {
+        exit(0);
+    }
 
     if (!cin || opt < 0 || opt > (int)mancareDisponibila.size()) {
         throw EroareInput("Optiune invalida.");

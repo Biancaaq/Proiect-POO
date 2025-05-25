@@ -77,6 +77,10 @@ bool Rucsac::aruncaLoot(int index) {
         throw EroareRucsacGol("Rucsacul este gol.");
     }
 
+    if (index == -1) {
+        exit(0);
+    }
+
     if (index < 1 || index > static_cast<int>(loot.size())) {
         throw EroareInput("Index invalid.");
     }
