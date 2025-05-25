@@ -1,32 +1,32 @@
-# Nu primesc notă pentru că nu am pus titlu și descriere
+# The Path
 
-### Folosiți template-ul corespunzător grupei voastre!
+**The Path** este un joc de strategie ce urmareste drumul unui calator catre orasul in care de mic a visat sa ajunga. Jucatorul porneste intr-o calatorie spre oras, traversand tabere, drumuri si rauri. Pe drum poate gasi loot, vana iepuri, face crafting, vinde obiecte, cumpara sau traversa rauri. Energia, greutatea echipamentului, viteza si norocul influenteaza direct sansele de reusita.
 
-| Laborant  | Link template                                |
-|-----------|----------------------------------------------|
-| Dragoș B  | https://github.com/Ionnier/oop-template      |
-| Tiberiu M | https://github.com/MaximTiberiu/oop-template |
-| Marius MC | https://github.com/mcmarius/oop-template     |
+---
 
-## Instrucțiuni de compilare
+## Caracteristici
 
-Proiectul este configurat cu CMake.
+- Generare loot
+- Crafting in tabere pe baza de retete
+- Rucsac care tine cont de greutate
+- Echipamente care pot fi upgradate
+- Vanzare de loot in tabara
+- Sistem de energie influentat de greutate si echipament
+- SuperJucator cu sansa aleatoare de aparitie si bonusuri
+- Managementul traseului si al locatiilor (cu validari stricte)
 
-Instrucțiuni pentru terminal:
+---
 
-1. Pasul de configurare
-```sh
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
-# sau ./scripts/cmake.sh configure
-```
+## Obiectiv
 
-Sau pe Windows cu GCC:
-```sh
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -G Ninja
-# sau ./scripts/cmake.sh configure -g Ninja
-```
+Ajungi in **Orasul Final** traversand 21 de segmente de drum, 3 rauri si 3 tabere principale. Supravietuieste gestionand:
+- energia,
+- greutatea lootului si a echipamentului,
+- banii,
+- norocul,
+- si eficienta deciziilor tale.
 
-La acest pas putem cere să generăm fișiere de proiect pentru diverse medii de lucru.
+---
 
 ## Cerințe obligatorii
 
