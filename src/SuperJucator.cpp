@@ -88,7 +88,7 @@ SuperJucator& SuperJucator::operator=(const SuperJucator& sjuc) {
 ostream& operator<<(ostream& out, const SuperJucator& s) {
     out << "SuperJucator cu bonusurile: energie maxima - " << s.energieMaxima << ", bani initiali - " << s.baniInitiali << ", rata de scadere a energie - " << s.rataScadereEnergie << ", noroc: " << s.noroc * 100 << endl;
 
-    for (auto* h : s.echipament) {
+    for (const auto* h : s.echipament) {
         out << " - " << h->getNume() << " (nivel: " << h->getNivel() << ")" << endl;
     }
 
@@ -142,7 +142,7 @@ SuperJucator& SuperJucator::operator++() {
     energieMaxima += 50;
     baniInitiali += 50;
     rataScadereEnergie += 1;
-    noroc += 0.005;
+    noroc += 0.005f;
 
     limiteazaStatusuri();
 

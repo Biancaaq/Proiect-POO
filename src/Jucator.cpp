@@ -87,6 +87,7 @@ Jucator& Jucator::operator=(const Jucator& other) {
 
 void Jucator::faUpgrade(const string& numeEchipament) {
     bool upgradat = false;
+
     if (numeEchipament == "Palarie") {
         upgradat = echipament[0]->upgrade(bani, rucsac);
     }

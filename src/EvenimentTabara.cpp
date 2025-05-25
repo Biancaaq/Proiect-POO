@@ -118,7 +118,7 @@ void EvenimentTabara::vindeLoot(Jucator& jucator) {
 }
 
 void EvenimentTabara::upgradeEchipament(Jucator &jucator) {
-    auto& echipamente = jucator.getEchipament();
+    const auto& echipamente = jucator.getEchipament();
 
     cout << "Noroc actual: " << jucator.getNoroc() << endl << endl;
     cout << "Echipamente disponibile pentru upgrade: " << endl;
