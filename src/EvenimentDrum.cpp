@@ -36,6 +36,9 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
 
         catch (const EroareInput& e) {
             cout << e.what() << endl;
+
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
 
@@ -48,6 +51,9 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
 
             catch (const EroareInput& e) {
                 cout << e.what() << endl;
+
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
         }
 
@@ -69,6 +75,9 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
 
             catch (const EroareInput& e) {
                 cout << e.what() << endl;
+
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
         }
 
@@ -78,23 +87,30 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
     shared_ptr<Mancare> mancare = dynamic_pointer_cast<Mancare>(loot);
 
     if (mancare) {
-        cout << mancare->getNume() << " nu incape in rucsac. Vrei sa o mananci acum?" << endl;
-        cout << "1. Da" << endl;
-        cout << "2. Nu" << endl;
+        while (true) {
+            cout << mancare->getNume() << " nu incape in rucsac. Vrei sa o mananci acum?" << endl;
+            cout << "1. Da" << endl;
+            cout << "2. Nu" << endl;
 
-        int opt;
-        cin >> opt;
+            int opt;
+            cin >> opt;
 
-        if (!cin || (opt != 1 && opt != 2)) {
-            throw EroareInput("Optiune invalida.");
-        }
+            if (!cin || (opt != 1 && opt != 2)) {
+                cout << "Optiune invalida. Incearca din nou." << endl;
 
-        cin.ignore();
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-        if (opt == 1) {
-            jucator.consumaMancare(*mancare);
+                continue;
+            }
 
-            return;
+            cin.ignore();
+
+            if (opt == 1) {
+                jucator.consumaMancare(*mancare);
+
+                return;
+            }
         }
     }
 
@@ -131,6 +147,9 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
 
         catch (const EroareInput& e) {
             cout << e.what() << endl;
+
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
 }
@@ -147,7 +166,7 @@ void EvenimentDrum::executa(Jucator& jucator, const MemorieLoot& memorie) {
     }
 
     uniform_int_distribution<int> sansaIepure(1, 100);
-    if (sansaIepure(gen) <= 10) {
+    if (sansaIepure(gen) <= 30) {
         cout << "Un iepure ti-a aparut in cale!" << endl;
 
         int opt;
@@ -170,6 +189,9 @@ void EvenimentDrum::executa(Jucator& jucator, const MemorieLoot& memorie) {
 
             catch (const EroareInput& e) {
                 cout << e.what() << endl;
+
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
         }
 

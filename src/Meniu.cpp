@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <vector>
+#include <limits>
 #include "Meniu.hpp"
 #include "Exceptii.hpp"
 
@@ -23,8 +24,9 @@ void Meniu::startRun() {
                 if (loc == TipLocatie::Tabara) {
                     tabara.regenereazaEnergie(jucator);
 
-                    int optiune = -1;
-                    while (optiune != 0) {
+                    int optiune;
+
+                    while (true) {
                         cout << "Esti in tabara. Ce vrei sa faci?" << endl;
                         cout << "1. Crafting" << endl;
                         cout << "2. Vinde loot" << endl;
@@ -36,10 +38,18 @@ void Meniu::startRun() {
 
                         if (!cin || optiune < 0 || optiune > 3) {
                             cout << "Optiune invalida. Incearca din nou." << endl;
+
+                            cin.clear();
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
                             continue;
                         }
 
                         cin.ignore();
+
+                        if (optiune == 0) {
+                            break;
+                        }
 
                         switch (optiune) {
                             case 1: {
@@ -49,10 +59,14 @@ void Meniu::startRun() {
 
                                 catch (const exception& e) {
                                     cout << e.what() << endl;
+
+                                    cin.clear();
+                                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                                 }
 
                                 break;
                             }
+
                             case 2: {
                                 try {
                                     tabara.vindeLoot(jucator);
@@ -60,20 +74,28 @@ void Meniu::startRun() {
 
                                 catch (const exception& e) {
                                     cout << e.what() << endl;
+
+                                    cin.clear();
+                                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                                 }
 
                                 break;
                             }
-                            case 0:
-                                break;
 
                             case 3: {
-                                try {
-                                    tabara.upgradeEchipament(jucator);
-                                }
+                                while (true) {
+                                    try {
+                                        tabara.upgradeEchipament(jucator);
 
-                                catch (const exception& e) {
-                                    cout << e.what() << endl;
+                                        break;
+                                    }
+
+                                    catch (const exception& e) {
+                                        cout << e.what() << endl;
+
+                                        cin.clear();
+                                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                                    }
                                 }
 
                                 break;
@@ -82,6 +104,10 @@ void Meniu::startRun() {
 
                             default: {
                                 cout << "Optiune invalida. Incearca din nou." << endl;
+
+                                cin.clear();
+                                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
                                 break;
                             }
                         }
@@ -105,6 +131,9 @@ void Meniu::startRun() {
 
                     catch (const EroareInput& e) {
                         cout << e.what() << endl;
+
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     }
                 }
             }
@@ -121,6 +150,9 @@ void Meniu::startRun() {
 
     catch (const EroareInput& e) {
         cout << e.what() << endl;
+
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     catch (const EroareBani& e) {
@@ -135,11 +167,20 @@ void Meniu::startRun() {
 
 void Meniu::ruleaza() {
     srand(static_cast<unsigned int>(time(nullptr)));
-    memorie.incarcaDinJSON("mancare.json", "materiale.json");
-    retete = Reteta::reteteJson("retete.json");
+
+    try {
+        memorie.incarcaDinJSON("mancare.json", "materiale.json");
+        retete = Reteta::reteteJson("retete.json");
+    }
+
+    catch (const EroareParsingJSON& e) {
+        cout << e.what() << endl;
+
+        exit(1);
+    }
 
     while (true) {
-        cout << "MENIU PRINCIPAL" << endl;
+        cout << "MENIU PRINCIPAL" << endl << endl;
         cout << "1. Start joc nou" << endl;
         cout << "2. Iesire" << endl;
         cout << "Alege o optiune: ";
@@ -149,6 +190,9 @@ void Meniu::ruleaza() {
 
         if (!cin || (opt != 1 && opt != 2)) {
             cout << "Optiune invalida. Incearca din nou." << endl << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
             continue;
         }
 

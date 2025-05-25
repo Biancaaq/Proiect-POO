@@ -131,7 +131,7 @@ void Jucator::consumaEnergie() {
     double greutateRucsac = rucsac.getGreutate();
     double greutateHaine = 0.0;
 
-    for (auto* h : echipament) {
+    for (const auto* h : echipament) {
         if (!h) {
             throw EroarePointerNull("Echipament null.");
         }

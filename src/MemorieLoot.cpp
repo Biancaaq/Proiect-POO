@@ -15,44 +15,43 @@ using namespace std;
 
 
 void MemorieLoot::incarcaDinJSON(const string &fisierMancare, const string &fisierMateriale) {
-    try {
-        ifstream inMancare = deschideFisierJson(fisierMancare);
-        json jMancare;
-        inMancare >> jMancare;
+    ifstream inMancare = deschideFisierJson(fisierMancare);
 
-        for (const auto& m : jMancare) {
-            string nume = m["nume"];
-            double greutate = m["greutate"];
-            int raritate = m["raritate"];
-            int energie = m["energie"];
-            int pret = m["pret"];
-            bool procesata = m["procesata"];
-
-            mancare.push_back(make_shared<Mancare>(nume, greutate, raritate, pret, energie, procesata));
-        }
+    if (!inMancare.is_open()) {
+        throw EroareParsingJSON("Nu s-a putut deschide fisierul de mancare");
     }
 
-    catch (const exception& e) {
-        throw EroareParsingJSON("Eroare la parsarea fisierului de mancare.");
+    json jMancare;
+    inMancare >> jMancare;
+
+    for (const auto& m : jMancare) {
+        string nume = m["nume"];
+        double greutate = m["greutate"];
+        int raritate = m["raritate"];
+        int energie = m["energie"];
+        int pret = m["pret"];
+        bool procesata = m["procesata"];
+
+        mancare.push_back(make_shared<Mancare>(nume, greutate, raritate, pret, energie, procesata));
     }
 
-    try {
-        ifstream inMateriale = deschideFisierJson(fisierMateriale);
-        json jMateriale;
-        inMateriale >> jMateriale;
 
-        for (const auto& m : jMateriale) {
-            string nume = m["nume"];
-            double greutate = m["greutate"];
-            int raritate = m["raritate"];
-            int pret = m["pret"];
+    ifstream inMateriale = deschideFisierJson(fisierMateriale);
 
-            materiale.push_back(make_shared<Material>(nume, greutate, raritate, pret));
-        }
+    if (!inMateriale.is_open()) {
+        throw EroareParsingJSON("Nu s-a putut deschide fisierul de materiale");
     }
 
-    catch (const exception& e) {
-        throw EroareParsingJSON("Eroare la parsarea fisierului de materiale.");
+    json jMateriale;
+    inMateriale >> jMateriale;
+
+    for (const auto& m : jMateriale) {
+        string nume = m["nume"];
+        double greutate = m["greutate"];
+        int raritate = m["raritate"];
+        int pret = m["pret"];
+
+        materiale.push_back(make_shared<Material>(nume, greutate, raritate, pret));
     }
 }
 

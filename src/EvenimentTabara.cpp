@@ -1,5 +1,6 @@
 #include <iostream>
 #include <memory>
+#include <limits>
 #include "EvenimentTabara.hpp"
 #include "Mancare.hpp"
 #include "Material.hpp"
@@ -74,6 +75,8 @@ void EvenimentTabara::proceseazaCrafting(Jucator &jucator, const vector<Reteta>&
 
         rucsac.adaugaLoot(produsFinal);
         cout << "Ai craftat: " << produsFinal->getNume() << endl << endl;
+
+        break;
     }
 }
 
@@ -111,6 +114,7 @@ void EvenimentTabara::vindeLoot(Jucator& jucator) {
 void EvenimentTabara::upgradeEchipament(Jucator &jucator) {
     auto& echipamente = jucator.getEchipament();
 
+    cout << "Noroc actual: " << jucator.getNoroc() << endl << endl;
     cout << "Echipamente disponibile pentru upgrade: " << endl;
 
     for (size_t i = 0; i < echipamente.size(); ++i) {
@@ -129,8 +133,6 @@ void EvenimentTabara::upgradeEchipament(Jucator &jucator) {
     if (!cin || alegere < 0 || alegere > (int)echipamente.size()) {
         throw EroareInput("Optiune invalida.");
     }
-
-    cin.ignore();
 
     if (alegere == 0) {
         return;

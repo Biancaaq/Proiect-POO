@@ -23,10 +23,6 @@ void Traseu::genereazaDistante() {
     for (int i = 0; i < 21; ++i) {
         distanteSegmente.push_back(dist(gen));
     }
-
-    for (const auto& seg : distanteSegmente) {
-        cout << seg << " ";
-    }
 }
 
 void Traseu::genereazaTraseu() {
@@ -56,10 +52,6 @@ bool Traseu::pas(Jucator& jucator) {
         jucator.consumaEnergie();
         locatieVizitata = false;
 
-        cout << "[DEBUG] PAS -> "
-             << ", distantaRamasa: " << distantaRamasa
-             << ", locatieVizitata: " << locatieVizitata
-             << ", pozitieCurenta: " << pozitieCurenta << endl;
         return false;
     }
 

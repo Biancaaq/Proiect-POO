@@ -12,28 +12,27 @@ Reteta::Reteta(const string& rezultat, const string& tip, const map<string, int>
 vector<Reteta> Reteta::reteteJson(const string& fisierReteta) {
     vector<Reteta> retete;
 
-    try {
-        ifstream inReteta = deschideFisierJson(fisierReteta);
-        json jRetete;
-        inReteta >> jRetete;
+    ifstream inReteta = deschideFisierJson(fisierReteta);
 
-        for (const auto& reteta : jRetete) {
-            string rezultat = reteta.at("rezultat");
-            string tip = reteta.at("tip");
-            map<string, int> ingrediente;
-
-            for (const auto& ingredient : reteta.at("ingrediente")) {
-                string nume = ingredient.at("nume");
-                int cantitate = ingredient.at("cantitate");
-                ingrediente[nume] = cantitate;
-            }
-
-            retete.emplace_back(rezultat, tip, ingrediente);
-        }
+    if (!inReteta.is_open()) {
+        throw EroareParsingJSON("Nu s-a putut deschide fisierul de retete");
     }
 
-    catch (const exception& e) {
-        throw EroareParsingJSON("Eroare la parsarea fisierului de retete.");
+    json jRetete;
+    inReteta >> jRetete;
+
+    for (const auto& reteta : jRetete) {
+        string rezultat = reteta.at("rezultat");
+        string tip = reteta.at("tip");
+        map<string, int> ingrediente;
+
+        for (const auto& ingredient : reteta.at("ingrediente")) {
+            string nume = ingredient.at("nume");
+            int cantitate = ingredient.at("cantitate");
+            ingrediente[nume] = cantitate;
+        }
+
+        retete.emplace_back(rezultat, tip, ingrediente);
     }
 
     return retete;
