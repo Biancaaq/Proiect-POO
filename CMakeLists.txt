@@ -150,6 +150,7 @@ add_executable(${MAIN_EXECUTABLE_NAME} main.cpp ${SOURCES}
         include/Reteta.hpp
         include/EvenimentRau.hpp
         include/Meniu.hpp
+        include/LootFactory.hpp
         src/Eveniment.cpp
         include/Exceptii.hpp
         include/SuperJucator.hpp)

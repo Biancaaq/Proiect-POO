@@ -8,6 +8,8 @@ class Loot : public Obiect {
     protected:
     int raritate;
     int pret;
+    int id;
+    static int LootId;
 
     public:
     Loot(const std::string& nume, double greutate, int raritate, int pret);
@@ -15,7 +17,7 @@ class Loot : public Obiect {
 
     int getRaritate() const;
     int getPret() const;
-
+    int getID() const;
 };
 
 #endif
