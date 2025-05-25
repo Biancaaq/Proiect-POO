@@ -67,7 +67,8 @@ bool Rucsac::incapeInRucsac(const std::shared_ptr<Loot>& obiect) const {
 
 void Rucsac::afiseazaContinut(bool index) const {
     if (loot.empty()) {
-        throw EroareRucsacGol("Rucsacul este gol.");
+        cout << "Rucsacul este gol." << endl << endl;
+        return;
     }
 
     for (size_t i = 0; i < loot.size(); ++i) {
