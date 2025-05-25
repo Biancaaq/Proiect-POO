@@ -9,6 +9,7 @@
 #include "Loot.hpp"
 #include "DeschidereFisierJSON.hpp"
 #include "Exceptii.hpp"
+#include "LootFactory.hpp"
 
 using json = nlohmann::json;
 using namespace std;
@@ -25,14 +26,12 @@ void MemorieLoot::incarcaDinJSON(const string &fisierMancare, const string &fisi
     inMancare >> jMancare;
 
     for (const auto& m : jMancare) {
-        string nume = m["nume"];
-        double greutate = m["greutate"];
-        int raritate = m["raritate"];
-        int energie = m["energie"];
-        int pret = m["pret"];
-        bool procesata = m["procesata"];
+        auto loot = LootFactory::creeaza("mancare", m);
+        auto mancarePtr = dynamic_pointer_cast<Mancare>(loot);
 
-        mancare.push_back(make_shared<Mancare>(nume, greutate, raritate, pret, energie, procesata));
+        if (mancarePtr) {
+            mancare.push_back(mancarePtr);
+        }
     }
 
 
@@ -46,12 +45,12 @@ void MemorieLoot::incarcaDinJSON(const string &fisierMancare, const string &fisi
     inMateriale >> jMateriale;
 
     for (const auto& m : jMateriale) {
-        string nume = m["nume"];
-        double greutate = m["greutate"];
-        int raritate = m["raritate"];
-        int pret = m["pret"];
+        auto loot = LootFactory::creeaza("material", m);
+        auto materialPtr = dynamic_pointer_cast<Material>(loot);
 
-        materiale.push_back(make_shared<Material>(nume, greutate, raritate, pret));
+        if (materialPtr) {
+            materiale.push_back(materialPtr);
+        }
     }
 }
 
@@ -76,7 +75,6 @@ shared_ptr<Loot> MemorieLoot::genereazaLootAleator(const Jucator &jucator) const
     for (const auto& l : LootTotal) {
         int raritate = l->getRaritate();
         float noroc = jucator.getNoroc();
-
         double sansa = (1.0 / (1.0 + raritate)) * (1.0 + noroc);
         sanse.push_back(sansa);
     }
