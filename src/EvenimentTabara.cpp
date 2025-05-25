@@ -89,12 +89,12 @@ void EvenimentTabara::vindeLoot(Jucator& jucator) {
     Rucsac& rucsac = jucator.getRucsac();
 
     while (true) {
-        cout << "Continutul rucsacului: " << endl;
-        rucsac.afiseazaContinut(true);
-
         if (rucsac.getLoot().empty()) {
             return;
         }
+        
+        cout << "Continutul rucsacului: " << endl;
+        rucsac.afiseazaContinut(true);
 
         cout << "Alege itemul pe care vrei sa il vinzi sau '0' pentru inapoi: " << endl;
         int opt;
