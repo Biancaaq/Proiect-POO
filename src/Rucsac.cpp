@@ -1,6 +1,8 @@
 #include <iostream>
+#include <algorithm>
 #include "Rucsac.hpp"
 #include "Exceptii.hpp"
+#include "Loot.hpp"
 
 using namespace std;
 
@@ -51,6 +53,8 @@ void Rucsac::adaugaLoot(std::shared_ptr<Loot>& obiect) {
     }
 
     loot.push_back(obiect);
+
+    sort(loot.begin(), loot.end(), [](const shared_ptr<Loot>& a, const shared_ptr<Loot>& b) {return a->getPret() > b->getPret();});
 }
 
 bool Rucsac::incapeInRucsac(const std::shared_ptr<Loot>& obiect) const {
@@ -68,7 +72,7 @@ void Rucsac::afiseazaContinut(bool index) const {
 
     for (size_t i = 0; i < loot.size(); ++i) {
         if (index) cout << i + 1 << ". ";
-        cout << loot[i]->getNume() << " (greutate: " << loot[i]->getGreutate() << ", id: )" << loot[i]->getID() << endl;
+        cout << loot[i]->getNume() << " (greutate: " << loot[i]->getGreutate() << ", id: " << loot[i]->getID() << ")" << endl;
     }
 }
 
