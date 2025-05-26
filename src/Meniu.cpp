@@ -169,8 +169,8 @@ void Meniu::startRun() {
         //                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
         //             }
         //         }
-        //     }
-        // }
+            }
+        }
     }
 
     catch (const JocCastigat& e) {
