@@ -47,9 +47,12 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
     }
 
     if (rasp == 2) {
+        cout << "Ai lasat lootul." << endl << endl;
+
         while (true) {
             try {
                 aruncaLoot(jucator);
+
                 break;
             }
 
@@ -61,10 +64,7 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
             }
         }
 
-        cout << "Ai lasat lootul." << endl << endl;
-
         return;
-
     }
 
     if (jucator.getRucsac().incapeInRucsac(loot)) {
@@ -74,6 +74,7 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
         while (true) {
             try {
                 aruncaLoot(jucator);
+
                 break;
             }
 
@@ -119,6 +120,8 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
 
                 return;
             }
+
+            break;
         }
     }
 
@@ -231,6 +234,11 @@ void EvenimentDrum::executa(Jucator& jucator, const MemorieLoot& memorie) {
 
 void EvenimentDrum::aruncaLoot(Jucator& jucator) {
     const auto& rucsac = jucator.getRucsac();
+
+    if (rucsac.getLoot().empty()) {
+        cout << "Rucsacul este gol. Nu ai ce arunca." << endl << endl;
+        return;
+    }
 
     while (true) {
         cout << "Vrei sa arunci ceva din rucsac?" << endl;
