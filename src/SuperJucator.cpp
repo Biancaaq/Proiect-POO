@@ -96,49 +96,57 @@ ostream& operator<<(ostream& out, const SuperJucator& s) {
 }
 
 istream& operator>>(istream& in, SuperJucator& s) {
-    cout << "Introdu energie maxima (max 150): ";
-    in >> s.energieMaxima;
+    int energie = 0, bani = 0, rata = 0;
+    float noroc = 0.0f;
 
-    if (s.energieMaxima == -1) {
+    cout << "Introdu energie maxima (max 150): ";
+    in >> energie;
+
+    if (energie == -1) {
         exit(0);
     }
 
-    if (!cin || s.energieMaxima <= 0) {
+    if (!cin || energie <= 0) {
         throw EroareInput("Date invalide.");
     }
 
     cout << "Introdu bani initiali (max 100): ";
-    in >> s.baniInitiali;
+    in >> bani;
 
-    if (s.baniInitiali == -1) {
+    if (bani == -1) {
         exit(0);
     }
 
-    if (!cin || s.energieMaxima <= 0) {
+    if (!cin || bani <= 0) {
         throw EroareInput("Date invalide.");
     }
 
     cout << "Introdu rata scadere energie (max 3): ";
-    in >> s.rataScadereEnergie;
+    in >> rata;
 
-    if (s.rataScadereEnergie == -1) {
+    if (rata == -1) {
         exit(0);
     }
 
-    if (!cin || s.energieMaxima <= 0) {
+    if (!cin || rata <= 0) {
         throw EroareInput("Date invalide.");
     }
 
     cout << "Introdu noroc (0.0 - 0.5): ";
-    in >> s.noroc;
+    in >> noroc;
 
-    if (s.noroc == -1) {
+    if (noroc == -1) {
         exit(0);
     }
 
-    if (!cin || s.energieMaxima <= 0.0) {
+    if (!cin || noroc <= 0.0) {
         throw EroareInput("Date invalide.");
     }
+
+    s.energieMaxima = Bonus<int>(energie);
+    s.baniInitiali = Bonus<int>(bani);
+    s.rataScadereEnergie = Bonus<int>(rata);
+    s.noroc = Bonus<float>(noroc);
 
     for (auto* h : s.echipament) {
         int lvl;
@@ -163,10 +171,10 @@ istream& operator>>(istream& in, SuperJucator& s) {
 }
 
 SuperJucator& SuperJucator::operator++() {
-    energieMaxima += 50;
-    baniInitiali += 50;
-    rataScadereEnergie += 1;
-    noroc += 0.005f;
+    energieMaxima = Bonus<int>(static_cast<int>(energieMaxima) + 50);
+    baniInitiali = Bonus<int>((int)baniInitiali + 50);
+    rataScadereEnergie = Bonus<int>((int)rataScadereEnergie + 1);
+    noroc = Bonus<float>((float)noroc + 0.005f);
 
     limiteazaStatusuri();
 
@@ -221,19 +229,19 @@ float SuperJucator::getNoroc() const {
 }
 
 void SuperJucator::limiteazaStatusuri() {
-    if (energieMaxima > 150) {
-        energieMaxima = 150;
+    if ((int)energieMaxima > 150) {
+        energieMaxima = Bonus<int>(150);
     }
 
-    if (baniInitiali > 100) {
-        baniInitiali = 100;
+    if ((int)baniInitiali > 100) {
+        baniInitiali = Bonus<int>(100);
     }
 
-    if (rataScadereEnergie > 3) {
-        rataScadereEnergie = 3;
+    if ((int)rataScadereEnergie > 3) {
+        rataScadereEnergie = Bonus<int>(3);
     }
 
-    if (noroc > 0.005f) {
-        noroc = 0.005f;
+    if ((float)noroc > 0.5f) {
+        noroc = Bonus<float>(0.5f);
     }
 }

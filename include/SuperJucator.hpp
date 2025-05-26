@@ -4,13 +4,15 @@
 #include <vector>
 #include "Haina.hpp"
 #include "Jucator.hpp"
+#include "Bonus.hpp"
 
 
 class SuperJucator {
-    int energieMaxima;
-    int baniInitiali;
-    int rataScadereEnergie;
-    float noroc;
+    Bonus<int> energieMaxima;
+    Bonus<int> baniInitiali;
+    Bonus<int> rataScadereEnergie;
+    Bonus<float> noroc;
+
     std::vector<Haina*> echipament;
 
     public:
