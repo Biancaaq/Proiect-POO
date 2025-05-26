@@ -155,22 +155,22 @@ void Meniu::startRun() {
                     }
                 }
 
-                while (true) {
-                    try {
-                        drum.aruncaLoot(jucator);
-
-                        break;
-                    }
-
-                    catch (const EroareInput& e) {
-                        cout << e.what() << endl;
-
-                        cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                    }
-                }
-            }
-        }
+        //         while (true) {
+        //             try {
+        //                 drum.aruncaLoot(jucator);
+        //
+        //                 break;
+        //             }
+        //
+        //             catch (const EroareInput& e) {
+        //                 cout << e.what() << endl;
+        //
+        //                 cin.clear();
+        //                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        //             }
+        //         }
+        //     }
+        // }
     }
 
     catch (const JocCastigat& e) {
