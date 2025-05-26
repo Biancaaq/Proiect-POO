@@ -59,7 +59,11 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
         return;
     }
 
-    cout << "Rucsacul este plin." << endl << endl;
+    if (!jucator.getRucsac().incapeInRucsac(loot)) {
+        cout << "Rucsacul este plin." << endl << endl;
+
+        return;
+    }
 }
 
 
