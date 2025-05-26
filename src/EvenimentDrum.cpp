@@ -56,21 +56,6 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
         jucator.getRucsac().adaugaLoot(loot);
         cout << "Loot adaugat in rucsac." << endl << endl;
 
-        while (true) {
-            try {
-                aruncaLoot(jucator);
-
-                break;
-            }
-
-            catch (const EroareInput& e) {
-                cout << e.what() << endl;
-
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            }
-        }
-
         return;
     }
 
@@ -220,10 +205,10 @@ void EvenimentDrum::executa(Jucator& jucator, const MemorieLoot& memorie) {
 void EvenimentDrum::aruncaLoot(Jucator& jucator) {
     const auto& rucsac = jucator.getRucsac();
 
-    if (rucsac.getLoot().empty()) {
-        cout << "Rucsacul este gol. Nu ai ce arunca." << endl << endl;
-        return;
-    }
+    // if (rucsac.getLoot().empty()) {
+    //     cout << "Rucsacul este gol. Nu ai ce arunca." << endl << endl;
+    //     return;
+    // }
 
     while (true) {
         cout << "Vrei sa arunci ceva din rucsac?" << endl;
