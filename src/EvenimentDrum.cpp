@@ -297,12 +297,13 @@ void EvenimentDrum::aruncaLoot(Jucator& jucator) {
 void EvenimentDrum::consumaMancareDinRucsac(Jucator& jucator) {
     cout << "Energie ramasa: " << jucator.getEnergie() << endl;
 
+    int alegere;
+
     while (true) {
         cout << "Vrei sa consumi mancare din rucsac?" << endl;
         cout << "1. Da" << endl;
         cout << "2. Nu" << endl;
 
-        int alegere;
         cin >> alegere;
 
         if (alegere == -1) {
@@ -310,16 +311,22 @@ void EvenimentDrum::consumaMancareDinRucsac(Jucator& jucator) {
         }
 
         if (!cin || (alegere != 1 && alegere != 2)) {
-            throw EroareInput("Optiune invalida.");
+           cout << "Optiune invalida." << endl;
+
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            continue;
         }
 
         cin.ignore();
 
-        if (alegere == 2) {
-            return;
-        }
-
         break;
+    }
+
+
+    if (alegere == 2) {
+        return;
     }
 
     const auto& loot = jucator.getRucsac().getLoot();
@@ -335,6 +342,7 @@ void EvenimentDrum::consumaMancareDinRucsac(Jucator& jucator) {
 
     if (mancareDisponibila.empty()) {
         cout << "Nu ai mancare in rucsac." << endl << endl;
+
         return;
     }
 
