@@ -116,6 +116,8 @@ void EvenimentDrum::executa(Jucator& jucator, const MemorieLoot& memorie) {
                 cout << "Vanatoarea a avut succes! Ai primit x1 carne de iepure." << endl;
                 shared_ptr<Loot> carne = make_shared<Mancare>("carne de iepure", 0.4, 3, 12, 25, false);
                 interactLoot(jucator, carne);
+
+                return;
             }
 
             else {
