@@ -72,7 +72,10 @@ void Rucsac::afiseazaContinut(bool index) const {
     }
 
     for (size_t i = 0; i < loot.size(); ++i) {
-        if (index) cout << i + 1 << ". ";
+        if (index) {
+            cout << i + 1 << ". ";
+        }
+
         cout << loot[i]->getNume() << " (greutate: " << loot[i]->getGreutate() << ", id: " << loot[i]->getID() << ")" << endl;
     }
 }

@@ -59,48 +59,7 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
         return;
     }
 
-    // while (true) {
-    //     try {
-    //         aruncaLoot(jucator);
-    //
-    //         if (jucator.getRucsac().incapeInRucsac(loot)) {
-    //             jucator.getRucsac().adaugaLoot(loot);
-    //             cout << "Loot adaugat in rucsac." << endl << endl;
-    //
-    //             return;
-    //         }
-    //
-    //         cout << "Inca nu este suficient spatiu. Mai vrei sa arunci ceva?" << endl;
-    //         cout << "1. Da" << endl;
-    //         cout << "2. Nu" << endl;
-    //
-    //         int opt;
-    //         cin >> opt;
-    //
-    //         if (opt == -1) {
-    //             exit(0);
-    //         }
-    //
-    //         if (!cin || (opt != 1 && opt != 2)) {
-    //             throw EroareInput("Optiune invalida.");
-    //         }
-    //
-    //         cin.ignore();
-    //
-    //         if (opt == 2) {
-    //             cout << "Ai lasat lootul." << endl << endl;
-    //
-    //             return;
-    //         }
-    //     }
-    //
-    //     catch (const EroareInput& e) {
-    //         cout << e.what() << endl;
-    //
-    //         cin.clear();
-    //         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    //     }
-    // }
+    cout << "Rucsacul este plin." << endl << endl;
 }
 
 
@@ -174,64 +133,75 @@ void EvenimentDrum::aruncaLoot(Jucator& jucator) {
     //     return;
     // }
 
+    int rasp;
+
     while (true) {
-        cout << "Vrei sa arunci ceva din rucsac?" << endl;
-        cout << "1. Da" << endl;
-        cout << "2. Nu" << endl;
+        try {
+            cout << "Vrei sa arunci ceva din rucsac?" << endl;
+            cout << "1. Da" << endl;
+            cout << "2. Nu" << endl;
 
-        int rasp;
-        cin >> rasp;
+            cin >> rasp;
 
-        if (rasp == -1) {
-            exit(0);
-        }
-
-        if (!cin || (rasp != 1 && rasp != 2)) {
-            throw EroareInput("Optiune invalida.");
-        }
-
-        cin.ignore();
-
-        if (rasp == 2) {
-            return;
-        }
-
-        if (rasp == 1) {
-            if (rucsac.getLoot().empty()) {
-                cout << "Rucsacul este gol. Nu ai ce arunca." << endl;
-
-                return;
-            }
-
-            rucsac.afiseazaContinut(true);
-            cout << "Indexul obiectului de aruncat sau '0' daca doresti sa anulezi actiunea: ";
-
-            int index;
-            cin >> index;
-
-            if (index == -1) {
+            if (rasp == -1) {
                 exit(0);
             }
 
-            if (!cin || index < 0 || index > (int)rucsac.getLoot().size()) {
+            if (!cin || (rasp != 1 && rasp != 2)) {
                 throw EroareInput("Optiune invalida.");
             }
 
             cin.ignore();
 
-            if (index == 0) {
-                cout << "Actiune anulata." << endl << endl;
-                return;
-            }
+            break;
+        }
 
-            if (jucator.getRucsac().aruncaLoot(index)) {
-                cout << "Obiectul a fost aruncat." << endl << endl;
-            }
+        catch (const EroareInput& e) {
+            cout << e.what() << endl;
 
-            if (jucator.getRucsac().getLoot().empty()) {
-                cout << "Rucsacul este acum gol." << endl << endl;
-                return;
-            }
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    }
+
+    if (rasp == 2) {
+        return;
+    }
+
+    if (rasp == 1) {
+        if (rucsac.getLoot().empty()) {
+            cout << "Rucsacul este gol. Nu ai ce arunca." << endl;
+
+            return;
+        }
+
+        rucsac.afiseazaContinut(true);
+        cout << "Indexul obiectului de aruncat sau '0' daca doresti sa anulezi actiunea: ";
+
+        int index;
+        cin >> index;
+
+        if (index == -1) {
+            exit(0);
+        }
+
+        if (!cin || index < 0 || index > (int)rucsac.getLoot().size()) {
+            throw EroareInput("Optiune invalida.");
+        }
+
+        cin.ignore();
+
+        if (index == 0) {
+            cout << "Actiune anulata." << endl << endl;
+            return;
+        }
+
+        if (jucator.getRucsac().aruncaLoot(index)) {
+            cout << "Obiectul a fost aruncat." << endl << endl;
+        }
+
+        if (jucator.getRucsac().getLoot().empty()) {
+            cout << "Rucsacul este acum gol." << endl << endl;
         }
     }
 }
