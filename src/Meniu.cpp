@@ -38,7 +38,7 @@ void Meniu::startRun() {
                 if (loc == TipLocatie::Tabara) {
                     tabara.regenereazaEnergie(jucator);
 
-                    int optiune;
+                    int optiune = 0;
 
                     while (true) {
                         cout << "Esti in tabara. Ce vrei sa faci?" << endl;
@@ -155,20 +155,20 @@ void Meniu::startRun() {
                     }
                 }
 
-        //         while (true) {
-        //             try {
-        //                 drum.aruncaLoot(jucator);
-        //
-        //                 break;
-        //             }
-        //
-        //             catch (const EroareInput& e) {
-        //                 cout << e.what() << endl;
-        //
-        //                 cin.clear();
-        //                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        //             }
-        //         }
+                while (true) {
+                    try {
+                        drum.aruncaLoot(jucator);
+
+                        break;
+                    }
+
+                    catch (const EroareInput& e) {
+                        cout << e.what() << endl;
+
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    }
+                }
             }
         }
     }
@@ -218,7 +218,7 @@ void Meniu::ruleaza() {
         cout << "2. Iesire" << endl;
         cout << "Alege o optiune: ";
 
-        int opt;
+        int opt = 0;
         cin >> opt;
 
         if (opt == -1) {
@@ -279,7 +279,7 @@ void Meniu::initializareJucator() {
 
             cout << sjuc_input << endl << endl;
 
-            int opt;
+            int opt = 0;
 
             while (true) {
                 try {
@@ -333,7 +333,6 @@ void Meniu::initializareJucator() {
                         cout << "Refa statusurile." << endl;
                     }
                 }
-
         }
     }
 }

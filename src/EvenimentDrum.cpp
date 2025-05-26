@@ -15,7 +15,7 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
 
     cout << "Ai gasit: " << loot->getNume() << ", greutate: " << loot->getGreutate() << " kg" << ", raritate: " << loot->getRaritate() << endl << endl;
 
-    int rasp;
+    int rasp = 0;
 
     while (true) {
         try {
@@ -70,18 +70,12 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
 void EvenimentDrum::executa(Jucator& jucator, const MemorieLoot& memorie) {
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> sansaLoot(1, 100);
-
-    if (sansaLoot(gen) <= 100) {
-        shared_ptr<Loot> lootGasit = memorie.genereazaLootAleator(jucator);
-        interactLoot(jucator, lootGasit);
-    }
 
     uniform_int_distribution<int> sansaIepure(1, 100);
     if (sansaIepure(gen) <= 30) {
         cout << "Un iepure ti-a aparut in cale!" << endl;
 
-        int opt;
+        int opt = 0;
 
         while (true) {
             try {
@@ -120,14 +114,19 @@ void EvenimentDrum::executa(Jucator& jucator, const MemorieLoot& memorie) {
                 cout << "Vanatoarea a avut succes! Ai primit x1 carne de iepure." << endl;
                 shared_ptr<Loot> carne = make_shared<Mancare>("carne de iepure", 0.4, 3, 12, 25, false);
                 interactLoot(jucator, carne);
-
-                return;
             }
 
             else {
                 cout << "Iepurele a scapat." << endl << endl;
             }
         }
+    }
+
+    uniform_int_distribution<> sansaLoot(1, 100);
+
+    if (sansaLoot(gen) <= 100) {
+        shared_ptr<Loot> lootGasit = memorie.genereazaLootAleator(jucator);
+        interactLoot(jucator, lootGasit);
     }
 }
 
@@ -139,7 +138,7 @@ void EvenimentDrum::aruncaLoot(Jucator& jucator) {
     //     return;
     // }
 
-    int rasp;
+    int rasp = 0;
 
     while (true) {
         try {
@@ -184,7 +183,7 @@ void EvenimentDrum::aruncaLoot(Jucator& jucator) {
         rucsac.afiseazaContinut(true);
         cout << "Indexul obiectului de aruncat sau '0' daca doresti sa anulezi actiunea: ";
 
-        int index;
+        int index = 0;
         cin >> index;
 
         if (index == -1) {
@@ -215,7 +214,7 @@ void EvenimentDrum::aruncaLoot(Jucator& jucator) {
 void EvenimentDrum::consumaMancareDinRucsac(Jucator& jucator) {
     cout << "Energie ramasa: " << jucator.getEnergie() << endl;
 
-    int alegere;
+    int alegere = 0;
 
     while (true) {
         cout << "Vrei sa consumi mancare din rucsac?" << endl;
@@ -272,7 +271,7 @@ void EvenimentDrum::consumaMancareDinRucsac(Jucator& jucator) {
 
     cout << "0. Renunta" << endl;
 
-    int opt;
+    int opt = 0;
     cout << "Alege mancarea de consumat: ";
     cin >> opt;
 
