@@ -59,42 +59,6 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
         return;
     }
 
-    shared_ptr<Mancare> mancare = dynamic_pointer_cast<Mancare>(loot);
-
-    if (mancare) {
-        while (true) {
-            cout << mancare->getNume() << " nu incape in rucsac. Vrei sa o mananci acum?" << endl;
-            cout << "1. Da" << endl;
-            cout << "2. Nu" << endl;
-
-            int opt;
-            cin >> opt;
-
-            if (opt == -1) {
-                exit(0);
-            }
-
-            if (!cin || (opt != 1 && opt != 2)) {
-                cout << "Optiune invalida. Incearca din nou." << endl;
-
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-                continue;
-            }
-
-            cin.ignore();
-
-            if (opt == 1) {
-                jucator.consumaMancare(*mancare);
-
-                return;
-            }
-
-            break;
-        }
-    }
-
     while (true) {
         try {
             aruncaLoot(jucator);
