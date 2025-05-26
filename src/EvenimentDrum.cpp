@@ -49,21 +49,6 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
     if (rasp == 2) {
         cout << "Ai lasat lootul." << endl << endl;
 
-        while (true) {
-            try {
-                aruncaLoot(jucator);
-
-                break;
-            }
-
-            catch (const EroareInput& e) {
-                cout << e.what() << endl;
-
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            }
-        }
-
         return;
     }
 
