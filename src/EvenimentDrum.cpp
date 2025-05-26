@@ -59,48 +59,48 @@ void EvenimentDrum::interactLoot(Jucator& jucator, shared_ptr<Loot> loot) {
         return;
     }
 
-    while (true) {
-        try {
-            aruncaLoot(jucator);
-
-            if (jucator.getRucsac().incapeInRucsac(loot)) {
-                jucator.getRucsac().adaugaLoot(loot);
-                cout << "Loot adaugat in rucsac." << endl << endl;
-
-                return;
-            }
-
-            cout << "Inca nu este suficient spatiu. Mai vrei sa arunci ceva?" << endl;
-            cout << "1. Da" << endl;
-            cout << "2. Nu" << endl;
-
-            int opt;
-            cin >> opt;
-
-            if (opt == -1) {
-                exit(0);
-            }
-
-            if (!cin || (opt != 1 && opt != 2)) {
-                throw EroareInput("Optiune invalida.");
-            }
-
-            cin.ignore();
-
-            if (opt == 2) {
-                cout << "Ai lasat lootul." << endl << endl;
-
-                return;
-            }
-        }
-
-        catch (const EroareInput& e) {
-            cout << e.what() << endl;
-
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        }
-    }
+    // while (true) {
+    //     try {
+    //         aruncaLoot(jucator);
+    //
+    //         if (jucator.getRucsac().incapeInRucsac(loot)) {
+    //             jucator.getRucsac().adaugaLoot(loot);
+    //             cout << "Loot adaugat in rucsac." << endl << endl;
+    //
+    //             return;
+    //         }
+    //
+    //         cout << "Inca nu este suficient spatiu. Mai vrei sa arunci ceva?" << endl;
+    //         cout << "1. Da" << endl;
+    //         cout << "2. Nu" << endl;
+    //
+    //         int opt;
+    //         cin >> opt;
+    //
+    //         if (opt == -1) {
+    //             exit(0);
+    //         }
+    //
+    //         if (!cin || (opt != 1 && opt != 2)) {
+    //             throw EroareInput("Optiune invalida.");
+    //         }
+    //
+    //         cin.ignore();
+    //
+    //         if (opt == 2) {
+    //             cout << "Ai lasat lootul." << endl << endl;
+    //
+    //             return;
+    //         }
+    //     }
+    //
+    //     catch (const EroareInput& e) {
+    //         cout << e.what() << endl;
+    //
+    //         cin.clear();
+    //         cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    //     }
+    // }
 }
 
 
