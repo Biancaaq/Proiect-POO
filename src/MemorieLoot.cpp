@@ -1,57 +1,29 @@
 #include <fstream>
 #include <random>
-#include <nlohmann/json.hpp>
 #include <iostream>
 #include "MemorieLoot.hpp"
 #include "Mancare.hpp"
 #include "Material.hpp"
 #include "Jucator.hpp"
 #include "Loot.hpp"
-#include "DeschidereFisierJSON.hpp"
 #include "Exceptii.hpp"
 #include "LootFactory.hpp"
 
-using json = nlohmann::json;
 using namespace std;
 
 
-void MemorieLoot::incarcaDinJSON(const string &fisierMancare, const string &fisierMateriale) {
-    ifstream inMancare = deschideFisierJson(fisierMancare);
-
-    if (!inMancare.is_open()) {
-        throw EroareParsingJSON("Nu s-a putut deschide fisierul de mancare");
-    }
-
-    json jMancare;
-    inMancare >> jMancare;
-
-    for (const auto& m : jMancare) {
-        auto loot = LootFactory::creeaza("mancare", m);
-        auto mancarePtr = dynamic_pointer_cast<Mancare>(loot);
-
-        if (mancarePtr) {
-            mancare.push_back(mancarePtr);
-        }
-    }
-
-
-    ifstream inMateriale = deschideFisierJson(fisierMateriale);
-
-    if (!inMateriale.is_open()) {
-        throw EroareParsingJSON("Nu s-a putut deschide fisierul de materiale");
-    }
-
-    json jMateriale;
-    inMateriale >> jMateriale;
-
-    for (const auto& m : jMateriale) {
-        auto loot = LootFactory::creeaza("material", m);
-        auto materialPtr = dynamic_pointer_cast<Material>(loot);
-
-        if (materialPtr) {
-            materiale.push_back(materialPtr);
-        }
-    }
+void MemorieLoot::incarcaLoot() {
+    mancare.push_back(LootFactory::mar());
+    mancare.push_back(LootFactory::alune_padure());
+    mancare.push_back(LootFactory::fructe_padure());
+    mancare.push_back(LootFactory::suc_mere());
+    mancare.push_back(LootFactory::carne_gatita());
+    mancare.push_back(LootFactory::baton_energetic());
+    materiale.push_back(LootFactory::piele());
+    materiale.push_back(LootFactory::lana());
+    materiale.push_back(LootFactory::lemn());
+    materiale.push_back(LootFactory::piatra());
+    materiale.push_back(LootFactory::clei());
 }
 
 shared_ptr<Loot> MemorieLoot::genereazaLootAleator(const Jucator &jucator) const {

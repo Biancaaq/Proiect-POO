@@ -12,7 +12,7 @@ class MemorieLoot {
     std::vector<std::shared_ptr<Loot>> materiale;
 
 public:
-    void incarcaDinJSON(const std::string& fisierMancare, const std::string& fisierMateriale);
+    void incarcaLoot();
     std::shared_ptr<Loot> genereazaLootAleator(const Jucator& jucator) const;
     std::shared_ptr<Mancare> getMancare(const std::string& nume) const;
 };

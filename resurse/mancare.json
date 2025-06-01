@@ -1,8 +1,0 @@
-[
-  { "nume": "mar", "greutate": 0.2, "raritate": 0, "energie": 10, "pret": 4, "procesata": false },
-  { "nume": "alune de padure", "greutate": 0.1, "raritate": 2, "energie": 8, "pret": 6, "procesata": false },
-  { "nume": "fructe de padure", "greutate": 0.15, "raritate": 1, "energie": 7, "pret": 5, "procesata": false },
-  { "nume": "suc de mere", "greutate": 0.3, "raritate": 1, "energie": 20, "pret": 12, "procesata": true },
-  { "nume": "carne gatita", "greutate": 0.45, "raritate": 4, "energie": 40, "pret": 20, "procesata": true },
-  { "nume": "baton energetic", "greutate": 0.6, "raritate": 3, "energie": 40, "pret": 22, "procesata": true }
-]

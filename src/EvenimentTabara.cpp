@@ -1,6 +1,5 @@
 #include <iostream>
 #include <memory>
-#include <limits>
 #include <cmath>
 #include "EvenimentTabara.hpp"
 #include "Mancare.hpp"

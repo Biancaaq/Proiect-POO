@@ -2,7 +2,6 @@
 #define RUCSAC_HPP
 
 #include <memory>
-
 #include "Obiect.hpp"
 #include "Loot.hpp"
 #include <vector>

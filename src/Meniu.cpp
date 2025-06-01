@@ -202,7 +202,7 @@ void Meniu::ruleaza() {
     srand(static_cast<unsigned int>(time(nullptr)));
 
     try {
-        memorie.incarcaDinJSON("mancare.json", "materiale.json");
+        memorie.incarcaLoot();
         retete = Reteta::reteteJson("retete.json");
     }
 
