@@ -1,6 +1,7 @@
 #include <fstream>
 #include <random>
 #include <iostream>
+#include <numeric>
 #include "MemorieLoot.hpp"
 #include "Mancare.hpp"
 #include "Material.hpp"
